@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css"/>
+<title>User Registration</title>
+
+{% block content %}
+
+<script language="javascript">
+function alltrim(str)
+{
+   return str.toString().replace(/^\s+|\s+$/g, '');
+}
+function hidestuff(s){
+  document.getElementById(s).style.visibility="hidden";
+}
+
+function submitform()
+{
+userName = document.getElementById("id_userName").value;
+   choosePassword = document.getElementById("id_choosePassword").value;
+   repeatPassword = document.getElementById("id_repeatPassword").value;
+   firstName = document.getElementById("id_firstName");
+   lastName = document.getElementById("id_lastName");
+   errordiv = document.getElementById("msgDivError");
+   regForm = document.getElementById("registerForm");
+   successMsg = document.getElementById("successmsg");
+   var minLength = 6; // Minimum length
+   var re = /[0-9]/;
+   if (successMsg)
+   {
+       successMsg.style.visibility='hidden';
+   }
+
+   var alphaNumRegex =   /^\w*\@*\.*\w*\@*\.*\w*\.*\w*$/
+   //var alphaNumRegex11 = /^([a-zA-Z0-9 _-]+)$/
+   if (alltrim(userName) == "" ||  alltrim(userName) == null)
+   {
+   errordiv.style.visibility='visible';
+  document.getElementById('msg').innerHTML = "Please enter username.";
+   document.getElementById("id_userName").focus();
+   return false;
+  }
+  else if (alltrim(choosePassword) == "" ||  alltrim(choosePassword) == null)
+  {
+   errordiv.style.visibility='visible';
+  document.getElementById('msg').innerHTML = "Please enter a password.";
+   document.getElementById("id_choosePassword").focus();
+   return false;
+   }
+   else if (alltrim(repeatPassword) == "" ||  alltrim(repeatPassword) == null)
+  {
+   errordiv.style.visibility='visible';
+  document.getElementById('msg').innerHTML = "Please confirm password.";
+   document.getElementById("id_repeatPassword").focus();
+   return false;
+   }
+   else
+   {
+    if (userName.search(alphaNumRegex)==-1)
+    {
+
+  errordiv.style.visibility='visible';
+  document.getElementById('msg').innerHTML = "Invalid UserName";
+    document.getElementById("id_userName").focus();
+    return false;
+
+    }
+    if (alltrim(choosePassword) != "" && alltrim(choosePassword) != null)
+    {
+    if (alltrim(choosePassword).length < minLength)
+    {
+    errordiv.style.visibility='visible';
+  document.getElementById('msg').innerHTML = "Password must be atleast 6 characters long.";
+    document.getElementById("id_choosePassword").focus();
+    return false;
+    }
+    else if (!re.test(alltrim(choosePassword)))
+    {
+errordiv.style.visibility='visible';
+  document.getElementById('msg').innerHTML = "Password must contain at least one number";
+    document.getElementById("id_choosePassword").focus();
+    return false;
+}
+    }
+    if (alltrim(choosePassword) != alltrim(repeatPassword))
+    {
+    errordiv.style.visibility='visible';
+    document.getElementById('msg').innerHTML = "Passwords do not match";
+    document.getElementById("id_repeatPassword").focus();
+    return false;
+    }
+    regForm.action=".";
+    regForm.submit();
+    return true;
+   }
+
+}
+
+</script>
+<div id = "commonDiv" style="margin-top:50px">
+{% if form.errors %}
+<div id="msgDiv" class="alert-message error" style="width:400px;margin-left:auto;margin-right:auto;text-align:center;padding:0px;">
+
+<a class="close" href="#" onclick="hidestuff('msgDiv')">x</a>
+<p>
+{% if  form.userName.errors %}
+                        {{  form.userName.errors|striptags }}
+        {% else %}{% if  form.choosePassword.errors%}
+            {{  form.choosePassword.errors|striptags }}
+        {% else %}{% if  form.repeatPassword.errors%}
+            {{  form.repeatPassword.errors|striptags }}
+{% else %}{% if  form.lastName.errors%}
+            {{  form.lastName.errors|striptags }}
+{% else %}{% if  form.firstName.errors%}
+           {{  form.firstName.errors|striptags }}
+        {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+</p>
+</div>
+{% endif %}
+
+{% if success %}
+<div id="successmsg" class="alert-message success" style="width:400px;margin-left:auto;margin-right:auto;text-align:center;padding:0px;">
+<a  class="close" href="#" onclick="hidestuff('successmsg')">x</a>
+<p id="msg1">
+{{success}}
+</p>
+</div>
+{% endif %}
+<div id="msgDivError" class="alert-message error"  style="visibility:hidden;width:400px;margin-left:auto;margin-right:auto;text-align:center;padding:0px;">
+<a  class="close" href="#" onclick="hidestuff('msgDivError')">x</a>
+<p id="msg">
+
+</p>
+</div>
+</div>
+<div  style="width:400px;margin-left:auto;margin-right:auto;margin-top:10px;">
+<form id="registerForm" method="post">
+<fieldset class="bordered-table" style="border: 10px solid #ddd">
+<div style="width:300px;margin-left:auto;margin-right:auto;">
+{% if welcomeMsg %}<h3 style="margin-left:auto; margin-left:auto;text-align:center">Hi, <i style="color:blue">{{welcomeMsg}}.</i> Lets finish setting up your account!</h3>{% endif %}
+{% if errorMsg %}<h4 style="color:red">{{errorMsg}}<h4>{% endif %}
+</div>
+
+<table style="width:300px;margin-left:auto;margin-right:auto;>
+
+<tr style=" width:400px;">
+<td style=" border: 0px none black;">
+{{form.firstName}}
+</td>
+<td style=" border: 0px none black">
+{{form.lastName}}
+</td>
+</tr>
+<tr style=" width:400px;">
+<td COLSPAN="2" style=" border: 0px none black;">
+<b>{{form.userName.label}}</b><br>{{form.userName}}
+</td>
+</tr>
+
+<tr style=" width:400px;">
+<td COLSPAN="2" style=" border: 0px none black;">
+<b>{{form.choosePassword.label}}</b><br>{{form.choosePassword}}
+</td>
+</tr>
+<tr style=" width:400px;">
+<td COLSPAN="2" style=" border: 0px none black;">
+<b>{{form.repeatPassword.label}}</b><br>{{form.repeatPassword}}<br><span class="help-block">6 characters or longer with atleast one number is safe</span>
+</td>
+</tr>
+<tr style=" width:400px;">
+<td COLSPAN="2" style=" border: 0px none black">
+<div style="width:200px;margin-left:90px;margin-right:auto;">
+<input type="button" class="btn success" value="Create your Account" onclick="submitform()"/>
+</div></td>
+</tr>
+
+
+</table>
+</fieldset>
+</form>
+</div>
+<script language="javascript">
+document.getElementById("id_firstName").readOnly="readonly";
+document.getElementById("id_lastName").readOnly="readonly";
+{%if NEFUser%}
+document.getElementById("id_userName").readOnly="readonly";
+{%endif%}
+</script>
+{% endblock %}

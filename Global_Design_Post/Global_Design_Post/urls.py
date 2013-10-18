@@ -7,6 +7,9 @@ from django.conf import settings
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'gdp.views.home', name='home'),
+    url(r'^favorites/$', 'gdp.views.favorites', name='favorites'),
+     url(r'^bazaar/$', 'gdp.views.bazaar', name='bazaar'),
+     url(r'^mygdp/$', 'gdp.views.mygdp', name='mygdp'),
     # url(r'^Global_Design_Post/', include('Global_Design_Post.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

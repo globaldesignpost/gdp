@@ -20,7 +20,7 @@ def favorites(request):
 def bazaar(request):
     form =RegistrationForm()
     variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!'})
-    return render_to_response('bazar.html',variables )
+    return render_to_response('bazaar.html',variables )
 
 def mygdp(request):
     form =RegistrationForm()

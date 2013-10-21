@@ -2,16 +2,14 @@ import re
 from django import forms
 
 class RegistrationForm(forms.Form):
-    userName = forms.CharField(label=u'Username:', max_length=30,widget = forms.TextInput(attrs={'class': 'span3',}))
+    userName = forms.CharField(label=u'Name:', max_length=30,widget = forms.TextInput(attrs={'class': 'span3',}))
     emailAddress = forms.EmailField(label=u'Email Address',max_length=80,widget = forms.TextInput(attrs={'class': 'span3',}))
-    choosePassword = forms.CharField(
-        label=u'Choose Password:',
+    password = forms.CharField(
+        label=u'Password:',
         widget=forms.PasswordInput(attrs={'class': 'span3',})
     )
-    repeatPassword = forms.CharField(
-        label=u'Repeat Password:',
-        widget=forms.PasswordInput(attrs={'class': 'span3',})
-    )
+    
+
 
 
 
@@ -22,6 +20,13 @@ class RegistrationForm(forms.Form):
             if choosePassword == repeatPassword:
                 return repeatPassword
         raise forms.ValidationError('Passwords do not match.')
+    
+    
+
+from captcha.fields import ReCaptchaField   
+ 
+class PasswordReCaptchaForm(RegistrationForm):
+    captcha = ReCaptchaField(label=u'Name:',attrs={'theme' : 'clean'})
 
 
 class UploadFileForm(forms.Form):
@@ -68,3 +73,13 @@ class ResetPasswordForm(forms.Form):
             if choosePassword == repeatPassword:
                 return repeatPassword
         raise forms.ValidationError('Passwords do not match.')
+    
+    
+    
+    
+from django.forms import ModelForm
+from models import Feed
+class FeedForm(ModelForm):
+    class Meta:
+        model = Feed        
+        

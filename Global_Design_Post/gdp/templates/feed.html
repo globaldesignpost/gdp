@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+{{add_feed}}<button type="button"><img src="https://developer.atlassian.com/s/en_GB-1988229788/4215/27aa6aff3fb0e9e5138a84da80ecdaa533a08846.48/_/images/icons/emoticons/check.png"></img></button> 
+</br>
+{% for t1 in list_feed %}
+ {{t1.title}}
+ {{t1.Description}}
+ {{t1.URL}}
+ {{t1.type}}
+{% endfor %}
+</body>
+</html>

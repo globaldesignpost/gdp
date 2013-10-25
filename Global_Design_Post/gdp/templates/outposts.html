@@ -1,0 +1,419 @@
+{% extends "base_template.html" %}
+{% block title %}GDP{% endblock %}
+
+{% block additional_js %}
+
+
+
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"> </script>
+
+<script>var x=new google.maps.LatLng(-34.2, 150.974856);var x0=new google.maps.LatLng(25.2644444, 55.3116667);var x1=new google.maps.LatLng(25.9064444, 55.9596667);var x2=new google.maps.LatLng(25.8944444, 55.9546667);var x3=new google.maps.LatLng(25.8854444, 55.9366667);var x4=new google.maps.LatLng(25.8764444, 55.9296667);var x5=new google.maps.LatLng(25.8674444, 55.9246667);var x6=new google.maps.LatLng(25.8604444, 55.9096667);var x7=new google.maps.LatLng(25.8534444, 55.8896667);var x8=new google.maps.LatLng(25.8344444, 55.8776667);var x9=new google.maps.LatLng(25.8264444, 55.8666667);var x10=new google.maps.LatLng(25.8174444, 55.8496667);var x11=new google.maps.LatLng(25.7974444, 55.8306667);var x12=new google.maps.LatLng(25.7784444, 55.8176667);var x13=new google.maps.LatLng(25.7654444, 55.7996667);var x14=new google.maps.LatLng(25.7524444, 55.7886667);var x15=new google.maps.LatLng(25.7424444, 55.7756667);var x16=new google.maps.LatLng(25.7224444, 55.7606667);var x17=new google.maps.LatLng(25.7114444, 55.7496667);var x18=new google.maps.LatLng(25.7024444, 55.7426667);var x19=new google.maps.LatLng(25.6854444, 55.7246667);var x20=new google.maps.LatLng(25.6674444, 55.7196667);var x21=new google.maps.LatLng(25.6594444, 55.7076667);var x22=new google.maps.LatLng(25.6484444, 55.7026667);var x23=new google.maps.LatLng(25.6284444, 55.6906667);var x24=new google.maps.LatLng(25.6134444, 55.6796667);var x25=new google.maps.LatLng(25.6074444, 55.6716667);var x26=new google.maps.LatLng(25.5914444, 55.6606667);var x27=new google.maps.LatLng(25.5824444, 55.6526667);var x28=new google.maps.LatLng(25.5644444, 55.6346667);var x29=new google.maps.LatLng(25.5524444, 55.6256667);var x30=new google.maps.LatLng(25.5364444, 55.6206667);var x31=new google.maps.LatLng(25.5244444, 55.6036667);var x32=new google.maps.LatLng(25.5164444, 55.5856667);var x33=new google.maps.LatLng(25.5044444, 55.5696667);var x34=new google.maps.LatLng(25.4944444, 55.5496667);var x35=new google.maps.LatLng(25.4834444, 55.5326667);var x36=new google.maps.LatLng(25.4644444, 55.5166667);var x37=new google.maps.LatLng(25.4514444, 55.5036667);var x38=new google.maps.LatLng(25.4384444, 55.4886667);var x39=new google.maps.LatLng(25.4184444, 55.4746667);var x40=new google.maps.LatLng(25.4044444, 55.4556667);var x41=new google.maps.LatLng(25.3974444, 55.4446667);var x42=new google.maps.LatLng(25.3794444, 55.4386667);var x43=new google.maps.LatLng(25.3594444, 55.4226667);var x44=new google.maps.LatLng(25.3474444, 55.4166667);var x45=new google.maps.LatLng(25.3274444, 55.4076667);var x46=new google.maps.LatLng(25.3114444, 55.3896667);var x47=new google.maps.LatLng(25.2964444, 55.3766667);var x48=new google.maps.LatLng(25.2914444, 55.3586667);var x49=new google.maps.LatLng(25.2854444, 55.3466667);var x50=new google.maps.LatLng(25.2714444, 55.3306667);var myTrip=[x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,x17,x18,x19,x20,x21,x22,x23,x24,x25,x26,x27,x28,x29,x30,x31,x32,x33,x34,x35,x36,x37,x38,x39,x40,x41,x42,x43,x44,x45,x46,x47,x48,x49,x50 ]; 
+</script>
+<script> 
+mapProp  = ''; 
+  map= ''; 
+  
+function setData(myTrip, a, b ) {
+var myLatlngs = new google.maps.LatLng(a, b); 
+  //var myLatlngs = new google.maps.LatLng(-33.890542, 151.274856);
+  var marker=new google.maps.Marker({
+  position: myLatlngs,
+  map : map,
+  title : ''
+  }); 
+  
+//marker.setMap(map);
+//var myTrip=[x,stavanger,amsterdam,london];
+var flightPath=new google.maps.Polyline({
+  path:myTrip,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:4
+  });
+
+flightPath.setMap(map); 
+
+}  
+
+mapProp  = ''; 
+  map= ''; 
+  
+
+ 
+function initialize()  {
+mapProp = {
+  center:x,
+  zoom:10,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };  
+  
+  map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var styles = [
+  {
+    stylers: [
+      { hue: "#00ffe6"},
+      { saturation: -20 }
+    ]
+  },{
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [
+      { lightness: 100 },
+      { visibility: "simplified" }
+    ]
+  },{
+    featureType: "road",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  }
+];
+
+map.setOptions({styles: styles});
+setMarkers(map, beaches);
+
+  //setData(myTrip, -34.2, 150.974856)
+} 
+
+
+
+/**
+ * Data for the markers consisting of a name, a LatLng and a zIndex for
+ * the order in which these markers should display on top of each
+ * other.
+ */
+var beaches = [
+  ['Bondi Beach', -33.890542, 151.274856, 4],
+  ['Coogee Beach', -33.923036, 151.259052, 5],
+  ['Cronulla Beach', -34.028249, 151.157507, 3],
+  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+  ['Maroubra Beach', -33.950198, 151.259302, 1]
+];
+
+function setMarkers(map, locations) {
+  // Add markers to the map
+
+  // Marker sizes are expressed as a Size of X,Y
+  // where the origin of the image (0,0) is located
+  // in the top left of the image.
+
+  // Origins, anchor positions and coordinates of the marker
+  // increase in the X direction to the right and in
+  // the Y direction down.
+  var image = {
+    url: '/static/images/maplogo.jpg',
+    // This marker is 20 pixels wide by 32 pixels tall.
+    size: new google.maps.Size(20, 32),
+    // The origin for this image is 0,0.
+    origin: new google.maps.Point(0,0),
+    // The anchor for this image is the base of the flagpole at 0,32.
+    anchor: new google.maps.Point(0, 32)
+  };
+  // Shapes define the clickable region of the icon.
+  // The type defines an HTML &lt;area&gt; element 'poly' which
+  // traces out a polygon as a series of X,Y points. The final
+  // coordinate closes the poly by connecting to the first
+  // coordinate.
+  var shape = {
+      coord: [1, 1, 1, 20, 18, 20, 18 , 1],
+      type: 'poly'
+  };
+  for (var i = 0; i < locations.length; i++) {
+    var beach = locations[i];
+    var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: image,
+        shape: shape,
+        title: beach[0],
+        zIndex: beach[3]
+    });
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}
+{% block content %}
+
+    
+    <div class="row-fluid">
+    <div class="span12">
+    <div id="googleMap" style="width:1000px;height:400px;"></div>
+    </div>
+    </div>
+     <div class="row-fluid">
+      <div class="span12">
+ <div class="MIDDLEMAIN">
+
+      <div class="MIDDLELEFT">
+
+      <div>
+
+      <div class="MIDDLELEFT450">DSASDAS</div>
+
+      <div class="MIDDLELEFT200">QWQW	QW</div>
+
+
+      </div>
+
+
+
+      <div>
+      <div class="MIDDLELEFT615">
+
+      <div class="BOXCLICKTEXT">
+EDITORS CHOICE</div>
+
+
+      <div class="EDITORS">
+
+      <div class="EDITORSboxmain">
+
+      <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+
+       <div class="EDITORSboxmain">
+
+      <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+       <div class="EDITORSboxmain">
+
+      <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+       <div class="EDITORSboxmain">
+
+      <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+       <div class="EDITORSboxmain">
+
+ <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+      </div>
+
+
+      </div>
+      <div>
+
+        <div class="WELOVE">  LINKS WE LOVE </div>
+        <div>
+        <br>
+
+         <div class="nbs-flexisel-container"><div class="nbs-flexisel-inner"><ul id="flexiselDemo1" class="nbs-flexisel-ul" style="left: -155px;">
+
+    <li class="nbs-flexisel-item" style="width: 155px;"><img src="/static/images/logo-youtube.png"></li><li class="nbs-flexisel-item" style="width: 155px;"><img src="/static/images/logo-ebay.png"></li>
+
+    <li class="nbs-flexisel-item" style="width: 155px;"><img src="/static/images/logo-youtube.png"></li>
+
+<li class="nbs-flexisel-item" style="width: 155px;"><img src="/static/images/logo-ebay.png"></li></ul><div class="nbs-flexisel-nav-left" style="top: 17px;"></div><div class="nbs-flexisel-nav-right" style="top: 17px;"></div></div></div>
+
+<div class="clearout"></div>
+
+
+
+
+
+<script type="text/javascript">
+
+$(window).load(function() {
+    $("#flexiselDemo1").flexisel();
+    $("#flexiselDemo2").flexisel({
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: {
+            portrait: {
+                changePoint:480,
+                visibleItems: 1
+            },
+            landscape: {
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: {
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+
+    $("#flexiselDemo3").flexisel({
+        visibleItems: 5,
+        animationSpeed: 1000,
+        autoPlay: true,
+        autoPlaySpeed: 3000,
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: {
+            portrait: {
+                changePoint:480,
+                visibleItems: 1
+            },
+            landscape: {
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: {
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+
+    $("#flexiselDemo4").flexisel({
+        clone:false
+    });
+
+});
+</script>
+
+
+        </div>
+
+
+
+
+      </div>
+
+
+
+      </div>
+      <div>
+
+
+
+
+      </div>
+
+
+
+
+
+      <div class="MIDDLERIGHT">
+
+
+      <div class="MIDDLERIGHTBOX">Register Now CTA</div>
+
+      <div class="MIDDLERIGHTBOX">Social Icons</div>
+
+
+      <div class="MIDDLERIGHTBOX">Video Block</div>
+
+      <div class="MIDDLERIGHTBOX">Video Block</div>
+
+      <div class="adCTAbox">ad/CTA</div>
+
+      <div class="adCTAbox2">ad/CTA2</div>
+
+
+      </div>
+
+
+      </div>
+  </div>
+
+ </div>
+
+
+
+
+{% endblock %}

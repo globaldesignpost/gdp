@@ -8,11 +8,18 @@ from django.conf import settings
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'gdp.views.home', name='home'),
-    url(r'^login/$','gdp.views.registerUser' ),
+    url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^register/$','gdp.views.registerUser' ),
     url(r'^favorites/$', 'gdp.views.favorites', name='favorites'),
     url(r'^bazaar/$', 'gdp.views.bazaar', name='bazaar'),
     url(r'^mygdp/$', 'gdp.views.mygdp', name='mygdp'),
     url(r'^feed/$', 'gdp.views.feed', name='feed'),
+    url(r'^myProfile/$', 'gdp.views.myProfile', name='feed'),
+    url(r'^outposts/$', 'gdp.views.outposts', name='outposts'),
+    url(r'^inspiration/$', 'gdp.views.inspiration', name='inspiration'),
+    url(r'^colors/$', 'gdp.views.colors', name='colors'),
+    
+    
     # url(r'^Global_Design_Post/', include('Global_Design_Post.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

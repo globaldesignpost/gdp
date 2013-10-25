@@ -66,7 +66,7 @@ STATIC_ROOT = ''
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
-
+LOGIN_REDIRECT_URL = '/myProfile/'
 # Additional locations of static files
 STATICFILES_DIRS = (
     #'/Global_Design_Post/Global_Design_Post/static/',
@@ -105,7 +105,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'Global_Design_Post.urls'
-
+LOGIN_URL= '/login/'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'Global_Design_Post.wsgi.application'
 
@@ -115,6 +115,16 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     'gdp/templates',
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+    )
 
 # Captcha - google.com/recaptcha
 RECAPTCHA_PUBLIC_KEY = 'your public key here'
@@ -134,6 +144,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'gdp',
+    'django_tables2',
     'captcha',
 )
 

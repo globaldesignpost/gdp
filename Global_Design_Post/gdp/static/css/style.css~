@@ -392,102 +392,7 @@ body{margin-top:20PX;
 	margin-left: 0px;
 
 }
-.EDITORSboxcolor{
-	padding:0px;
-	width:590px;
-	margin-bottom:9px;
-	height:105px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-left: 0px;
 
-}
-
-.EDITORSleftinspire{
-	padding:0px;
-	width:170px;
-	height:155px;
-	float:left;
-	background-color:#FFF;
-	margin-right:4px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-left: 0px;
-
-}
-
-
-
-.EDITORSrightinspire{
-	margin:0px;
-	padding:0px;
-	width:398px;
-	height:143px;
-	float: right;
-	background-color:#e4e4e4;
-	padding:4px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:11px;
-	color:#333;
-
-}
-
-.EDITORSleftcolor{
-	padding:0px;
-	width:100px;
-	height:100px;
-	float:left;
-	background-color:#FFF;
-	margin-right:4px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-left: 0px;
-
-}
-
-
-
-.EDITORSrightcolor{
-	margin:0px;
-	padding:0px;
-	width:475px;
-	height:100px;
-	float: right;
-	background-color:#e4e4e4;
-	padding:0px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:11px;
-	color:#333;
-
-}
-.EDITORSleftprofile{
-	padding:0px;
-	width:100px;
-	height:100px;
-	float:left;
-	background-color:#FFF;
-	margin-right:4px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-left: 0px;
-
-}
-
-
-
-.EDITORSrightprofile{
-	margin:0px;
-	padding:0px;
-	width:300px;
-	height:100px;
-	
-	background-color:#e4e4e4;
-	padding:0px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:11px;
-	color:#333;
-
-}
 
 
 .EDITORSleftin{
@@ -1220,13 +1125,8 @@ a#prev_page_button:hover{
   }
 
 
-.adCTAboxvertical {
-    border: 1px solid #666666;
-    height: 100px;
-    margin: 0 0 10px 10px;
-    padding: 0;
-    width: 980px;
-}
 
+
+    /*4 page design close */
 
 

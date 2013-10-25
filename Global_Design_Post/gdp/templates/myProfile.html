@@ -1,0 +1,82 @@
+{% extends "base_template.html" %}
+{% block title %}GDP{% endblock %}
+
+{% block additional_js %}
+
+<script src="http://getbootstrap.com/assets/js/holder.js"></script>
+{% endblock %}
+{% block content %}
+<div class="row-fluid">
+  <div class="span12">
+    
+<div class="MIDDLELEFT">
+
+				      <h3><b>Profile</b></h3>
+						<hr>
+				
+				 <div class="row"></div>     
+				
+				    <form class="form-horizontal">
+				    {% csrf_token %}
+				 {% if form.errors %}
+				    <div class="alert alert-error" >
+				
+				
+				<p style="color:red;">{{form.errors}}</p></div>
+				{% endif %}
+				     <fieldset>
+				    {% for field in form %}
+				    <div class="control-group">
+				    <label class="control-label" for="inputEmail">{{ field.label }}</label>
+				    <div class="controls">
+				     {{ field }}
+				    </div>
+				    </div>
+				    
+				    {% endfor %}
+				    <div class="control-text">
+				    ** Your information will not be sold to any 3rd parties, and will only be used to build community and make our offerings more pertinent to you. We recommend keeping your profile public if you wish to be involved with networking and increase community potential.
+				    </div>
+				    <div class="control-group">
+				    
+    <label class="control-label" for="inputEmail"></label>
+    <div class="controls">
+    
+     <input type="submit" class="btn btn-default" value="Submit">
+    </div>
+    </div>
+				     </fieldset>
+				    </form>
+	</div>
+    <div class="MIDDLERIGHT" style="margin-top:20px;">
+<div class="EDITORS">
+<h3>My Account</h3>
+<div class="EDITORSboxcolor" style="width:300px;">
+
+      <div class="EDITORSleftprofile thumbnail">asdbdskjn</div>
+
+      <div class="EDITORSrightprofile">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, .</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+      </div>
+
+
+	      <div class="adCTAbox" >ad/CTA</div>
+			<div class="adCTAbox" >ad/CTA</div>
+      </div> 
+      
+      
+      
+    </div>
+      </div>
+  
+
+
+
+
+{% endblock %}

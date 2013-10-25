@@ -2,9 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{% block title %}GDP{% endblock %}</title>
- <link rel="icon" href="/static/images/logo.jpg" type="image/x-icon">
-<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<title>Untitled Document</title>
+
 <link href="/static/css/style.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -15,99 +14,19 @@
 		<script src="/static/js/jquery.booklet.1.1.0.min.js" type="text/javascript"></script>
 
 		<link href="/static/css/jquery.booklet.1.1.0.css" type="text/css" rel="stylesheet" media="screen" />
-		
-		<style>
-		.navbar-inner{
-		height:50px;
-		border:1px solid #eee;
-				}
-				.sidebar-nav {
-    padding: 9px 0;
-}
 
-.dropdown-menu .sub-menu {
-    left: 100%;
-    position: absolute;
-    top: 0;
-    visibility: hidden;
-    margin-top: -1px;
-}
 
-.dropdown-menu li:hover .sub-menu {
-    visibility: visible;
-}
+		<script src="cufon/cufon-yui.js" type="text/javascript"></script>
+		<script src="cufon/ChunkFive_400.font.js" type="text/javascript"></script>
+		<script src="cufon/Note_this_400.font.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			Cufon.replace('h1,p,.b-counter');
+			Cufon.replace('.book_wrapper a', {hover:true});
+			Cufon.replace('.title', {textShadow: '1px 1px #C59471', fontFamily:'ChunkFive'});
+			Cufon.replace('.reference a', {textShadow: '1px 1px #C59471', fontFamily:'ChunkFive'});
+			Cufon.replace('.loading', {textShadow: '1px 1px #000', fontFamily:'ChunkFive'});
+		</script>
 
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
-    margin-top: 0;
-}
-
-.navbar .sub-menu:before {
-    border-bottom: 7px solid transparent;
-    border-left: none;
-    border-right: 7px solid rgba(0, 0, 0, 0.2);
-    border-top: 7px solid transparent;
-    left: -7px;
-    top: 10px;
-}
-.navbar .sub-menu:after {
-    border-top: 6px solid transparent;
-    border-left: none;
-    border-right: 6px solid #fff;
-    border-bottom: 6px solid transparent;
-    left: 10px;
-    top: 11px;
-    left: -6px;
-}
-.nav .menuText{
-line-height:36px;
-width: 152px !important;
-}
-.caret{
-margin-top:16px !important;
-}
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
-    background-color: #0081C2;
-    background-image: -moz-linear-gradient(center top , 	#808080 , #C8C8C8 );
-    background-repeat: repeat-x;
-    
-    color: #FFFFFF;
-    text-decoration: none;
-}
-.table-container table thead{
-background-color:#686868 ;
-}
-.table-container table th a{
-color:#eee ;
-}
-#googleMap img {
-  max-width: none;display:inline; 
-}
-.pagination{
-list-style: none outside none;
-
-}
-.main{
-min-height:200px;
-}
-.form-horizontal .control-label {
-    text-align: left;
-    margin-left: 100px;
-   
-}
-.control-text
-{
-    color: #909090;
-    font-size: 10px;
-    line-height: 13px;
-    margin-left: 100px;
-    width: 458px;
-}
-	</style>
-{% block additional_js %}{% endblock %}
 </head>
 
 <body>
@@ -120,82 +39,16 @@ min-height:200px;
 
  <div class="logoboxmain">
  <div class="logoboxleft">
-<img src="/static/images/logo.jpg"></div>
+GDP logo</div>
 
- <div class="logoboxright" style="margin-top:14px;width:268;height:56px;">
- <div style="float:right;">
- <input type="text" class="" placeholder="Explore the vault"/><input type="button"  style="margin-bottom:10px;" class="btn btn-default" value="Go"/>
- </div>
- <div style="float:right;">
- <a href="/register" >Register </a> /<a href="/login" >Sign In </a>
- </div>
- </div>
+ <div class="logoboxright">sdasdas</div>
 
 
  </div>
 
   <!-- logo box main close -->
-<div class="navbar">
-              <div class="navbar-inner">
-                
-                	<div class="container">
-                  <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </a>
-                  
-                  <div class="nav-collapse collapse navbar-responsive-collapse">
-                    <ul class="nav">
-                      <li class="menuText"><a href="/"><b>HOME</b></a></li>
-                      <li class="dropdown menuText">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="/features/"><b>FEATURES</b> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="/outposts/">OUTPOSTS</a></li>
-                          <li><a href="/inspiration/">INSPIRATION</a></li>
-                          <li><a href="/colors/">COLOR</a></li>
-                          <li><a href="#">DESIGN MATTERS</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown menuText">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="/bazaar/"><b>BAZAAR</b> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">PRODUCTS WE LOVE</a></li>
-                          
-                        </ul>
-                      </li>
-                      <li class="dropdown menuText">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="/mygdp/"><b>MY GDP</b> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li ><a href="/register/">REGISTRATION</a></li>
-                          <li class=""><a href="/myProfile/">PROFILE</a></li>
-                          <li class=""><a href="#">SUBMIT</a></li>
-                          
-                        </ul>
-                      </li>
-                      <li class="menuText"><a href="/favorites/"><b>FAVOURITES</b></a></li>
-                      <li class="menuText"><a href="/feed/"><b>VAULT</b></a></li>
-                      <li  style="width:10px;margin-top:15px;"><span class="badge badge-warning"><a href="#"><b>?</b></a></span></li>
-                    </ul>
-                    
-                   
-                  </div><!-- /.nav-collapse -->
-                </div>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-              </div>
-            </div>
- <!--
+
+
     <div class=" menubox">
 
 
@@ -212,14 +65,7 @@ min-height:200px;
 
   </ul>
   </li>
-  <li><a href="/mygdp/">MY GDP</a>
-  <ul>
-  <li>  <a href="favurate.html">Join/Registration</a></li>
-      <li> <a href="/myProfile/">Profile</a></li>
-
-  </ul>
-  
-  </li>
+  <li><a href="/gdp/">MY GDP</a></li>
   <li><a href="/favorites/">FAVORITES</a></li>
 
   <li>VAULT</li>
@@ -227,22 +73,382 @@ min-height:200px;
 
 
     </div>
--->
 
 
-    <div class="globelogotextbox"><img style="" src="/static/GPD---Layout--interior1-color.jpg"/></div>
 
-    
-    
-    
-    </div>
-    
-    <!-- content -->
-    <div class="row-fluid" style="margin-top:15px;">
-  <div class="span12">
-    {% block content %}{% endblock %}
-    </div>
-    
+    <div class="globelogotextbox"><img style="margin-top:10px;" src="/static/GPD---Layout--interior1-color.jpg"/></div>
+
+    <!--slider div -->
+
+    <div class="slider" style="height:300px;">
+    <div class="book_wrapper">
+			<a id="next_page_button"></a>
+			<a id="prev_page_button"></a>
+			<div id="loading" class="loading">Loading pages...</div>
+			<div id="mybook" style="display:none;">
+		  <div class="b-load">
+					<div>
+						<img src="/static/images/1.jpg" style="" alt=""/>
+
+					</div>
+					<div>
+						<img src="/static/images/2.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/3.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/4.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/5.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/6.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/7.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/8.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/9.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/10.jpg" alt="" />
+						<h1>Compact News Previewer</h1>
+
+					</div>
+					<div>
+						<img src="/static/images/11.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/12.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/13.jpg" alt="" />
+
+					</div>
+					<div>
+						<img src="/static/images/14.jpg" alt="" />
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+ </div>
+
+
+     <!--slider div close -->
+
+          <!--BOX MAIN -->
+
+
+    <DIV class="BOXMAIN">
+
+     <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"><img src="/static/images/1BOX.jpg" width="292" height="256" alt="1BOX" /></DIV>
+
+     <DIV class="BOXCLICKTEXT"> LOOKING FOR SOMETHING</DIV>
+
+
+     </DIV>
+
+
+      <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"> <img src="/static/images/2BOX.jpg" width="292" height="256" alt="2BOX" /></DIV>
+
+     <DIV class="BOXCLICKTEXT"> LOOKING FOR SOMETHING</DIV>
+
+
+     </DIV>
+
+
+
+      <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="292" height="256" alt="BOX3" /></DIV>
+
+     <DIV class="BOXCLICKTEXT"> LOOKING FOR SOMETHING</DIV>
+
+
+     </DIV>
+
+
+    </DIV>
+
+      <!--BOX MAIN CLOSE -->
+
+       <!--MIDDLE VIEW -->
+
+      <DIV class="MIDDLEMAIN">
+
+      <DIV class="MIDDLELEFT">
+
+      <DIV>
+
+      <DIV class="MIDDLELEFT450">DSASDAS</DIV>
+
+      <DIV class="MIDDLELEFT200">QWQW	QW</DIV>
+
+
+      </DIV>
+
+
+
+      <div>
+      <DIV class="MIDDLELEFT615">
+
+      <DIV class="BOXCLICKTEXT">
+EDITORS CHOICE</DIV>
+
+
+      <DIV  class="EDITORS">
+
+      <div class="EDITORSboxmain">
+
+      <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+
+       <div class="EDITORSboxmain">
+
+      <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+       <div class="EDITORSboxmain">
+
+      <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+       <div class="EDITORSboxmain">
+
+      <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+       <div class="EDITORSboxmain">
+
+ <div class="EDITORSleftin">asdbdskjn</div>
+
+      <div class="EDITORSrightin">
+       <div class="fontboldsmall">TITLE</div>
+       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <p> <a href="#">Link</a></p>
+
+
+
+      </div>
+
+
+
+       </div>
+
+
+
+
+
+
+
+
+
+
+      </DIV>
+
+
+
+
+
+
+
+      </DIV>
+
+
+      </div>
+      <div>
+
+        <div class="WELOVE">  LINKS WE LOVE </div>
+        <div>
+        <br />
+
+         <ul id="flexiselDemo1">
+
+    <li><img src="/static/images/logo-ebay.png" /></li>
+
+    <li><img src="/static/images/logo-youtube.png" /></li>
+
+</ul>
+
+<div class="clearout"></div>
+
+
+
+
+
+<script type="text/javascript">
+
+$(window).load(function() {
+    $("#flexiselDemo1").flexisel();
+    $("#flexiselDemo2").flexisel({
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: {
+            portrait: {
+                changePoint:480,
+                visibleItems: 1
+            },
+            landscape: {
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: {
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+
+    $("#flexiselDemo3").flexisel({
+        visibleItems: 5,
+        animationSpeed: 1000,
+        autoPlay: true,
+        autoPlaySpeed: 3000,
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: {
+            portrait: {
+                changePoint:480,
+                visibleItems: 1
+            },
+            landscape: {
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: {
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+
+    $("#flexiselDemo4").flexisel({
+        clone:false
+    });
+
+});
+</script>
+
+
+        </div>
+
+
+
+
+      </div>
+
+
+
+      </DIV>
+      <div>
+
+
+
+
+      </div>
+
+
+
+
+
+      <DIV class="MIDDLERIGHT">
+
+
+      <DIV class="MIDDLERIGHTBOX">Register Now CTA</DIV>
+
+      <DIV class="MIDDLERIGHTBOX">Social Icons</DIV>
+
+
+      <DIV class="MIDDLERIGHTBOX">Video Block</DIV>
+
+      <DIV class="MIDDLERIGHTBOX">Video Block</DIV>
+
+      <DIV class="adCTAbox">ad/CTA</DIV>
+
+      <DIV class="adCTAbox2">ad/CTA2</DIV>
+
+
+      </DIV>
+
+
+      </DIV>
+
+       <!--MIDDLE VIEW -->
+
      <!--footer -->
 
 <div class="footer">

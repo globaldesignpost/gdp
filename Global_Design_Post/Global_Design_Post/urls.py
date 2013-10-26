@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^outposts/$', 'gdp.views.outposts', name='outposts'),
     url(r'^inspiration/$', 'gdp.views.inspiration', name='inspiration'),
     url(r'^colors/$', 'gdp.views.colors', name='colors'),
+    url(r'^addimage/$', 'gdp.views.addimage', name='addimage'),
     
     
     # url(r'^Global_Design_Post/', include('Global_Design_Post.foo.urls')),

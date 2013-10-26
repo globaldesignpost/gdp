@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, RequestContext
 from django.shortcuts import redirect
-from gdp.forms import RegistrationForm, FeedForm ,MyProfileForm
+from gdp.forms import RegistrationForm, FeedForm ,MyProfileForm,AddForm
 from gdp.models import Feed
 from gdp.forms import RegistrationForm,PasswordReCaptchaForm
 from django.contrib.auth.models import User, UserManager
@@ -123,3 +123,20 @@ def feed(request):
         table=FeedTable(list_feed)
         RequestConfig(request, paginate={"per_page": 25}).configure(table)
         return render(request, 'feed.html', {'table': table,'add_feed':add_feed})
+    
+    
+def addimage(request):
+    if request.method == 'POST':
+        add_image = AddForm(request.POST)
+        if add_image.is_valid():
+            add_image.save()
+            return HttpResponseRedirect('/imagelist/')
+        else:
+            variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','add_image':add_image})
+            return render_to_response('addimage.html',variables )
+            
+    else:
+        add_image= AddForm()
+        variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','add_image':add_image})
+        return render_to_response('addimage.html',variables )
+            

@@ -2,12 +2,12 @@ import re
 from django import forms
 from django.contrib.auth import authenticate,login
 from django.forms import ModelForm
-from models import Feed,Profile
+from models import Feed,Profile,Upload
 
 class MyProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['username','email','occupation','homeIs','myHomeIsSetIn','profileAccess','style','designStyle','favoriteStyle','favoriteSpot','environment','favoriteDesigner','colors','place','interestingPerson','constantSource','music','books','childhoodHero','beautifulSeason','favoriteTime','favoriteEra','amBestKnown','likeToBestKnown','believeDesign','alert','profileImage','inspriringImage']
+        fields = ['username','email','occupation','homeIs','myHomeIsSetIn','profileAccess','style','designStyle','favoriteSpot','environment','favoriteDesigner','colors','place','interestingPerson','constantSource','music','books','childhoodHero','beautifulSeason','favoriteTime','favoriteEra','amBestKnown','likeToBestKnown','believeDesign','alert','profileImage','inspriringImage']
   
 
 
@@ -119,10 +119,13 @@ class ResetPasswordForm(forms.Form):
         raise forms.ValidationError('Passwords do not match.')
     
     
-    
-    
 
 class FeedForm(ModelForm):
     class Meta:
-        model = Feed        
+        model = Feed    
+    
+
+class AddForm(ModelForm):
+    class Meta:
+        model = Upload        
         

@@ -15,7 +15,7 @@ class Upload(models.Model):
     title = models.CharField(max_length=30)
     Description = models.CharField(max_length=40)
     URL = models.CharField(max_length=30)
-    upload = models.FileField(max_length=30,upload_to="images")      
+    upload = models.FileField(upload_to="gdp/static/images/upload")      
     
 
 TITLE_CHOICES = (
@@ -369,5 +369,5 @@ class Profile(User):
     likeToBestKnown = models.CharField(verbose_name = "I would like to be best known for",max_length=100)
     believeDesign = models.CharField(verbose_name = "I believe design is",max_length=100)
     alert = models.CharField(verbose_name = "I would love opportunities to give through my passion or talent for design",max_length=100)
-    profileImage = models.FileField(verbose_name = "Profile Image",upload_to="images")
-    inspriringImage = models.FileField(verbose_name = "Inspiring image",upload_to="images")
+    profileImage = models.FileField(verbose_name = "Profile Image",upload_to="gdp/static/images/upload")
+    inspriringImage = models.FileField(verbose_name = "Inspiring image",upload_to="gdp/static/images/upload")

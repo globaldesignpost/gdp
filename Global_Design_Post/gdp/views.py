@@ -6,13 +6,13 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, RequestContext
 from django.shortcuts import redirect
 from gdp.forms import RegistrationForm, FeedForm ,MyProfileForm,AddForm
-from gdp.models import Feed
+from gdp.models import Feed,Upload
 from gdp.forms import RegistrationForm,PasswordReCaptchaForm
 from django.contrib.auth.models import User, UserManager
 from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.auth import authenticate,login
 from django.contrib import auth
-from gdp.tables import FeedTable
+from gdp.tables import FeedTable,UploadTable
 from django.shortcuts import render
 from django_tables2  import RequestConfig
 def home(request):
@@ -68,9 +68,22 @@ def colors(request):
     return render_to_response('colors.html',variables )
 
 def myProfile(request):
-    form =MyProfileForm()
-    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
-    return render_to_response('myProfile.html',variables )
+    if request.method == 'POST':
+        print request.POST
+        form = MyProfileForm(request.POST, request.FILES)
+        #print form
+        if form.is_valid():
+            # file is saved
+            form.save()
+            return HttpResponseRedirect('/')
+        else:
+            variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
+            return render_to_response('myProfile.html',variables )
+            
+    else:
+        form =MyProfileForm()
+        variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
+        return render_to_response('myProfile.html',variables )
 
 def bazaar(request):
     variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!'})
@@ -124,13 +137,21 @@ def feed(request):
         RequestConfig(request, paginate={"per_page": 25}).configure(table)
         return render(request, 'feed.html', {'table': table,'add_feed':add_feed})
     
-    
+def imagelist(request):
+    list_feed = Upload.objects.all()
+    table=UploadTable(list_feed)
+    RequestConfig(request, paginate={"per_page": 25}).configure(table)
+    return render(request, 'imagelist.html', {'table': table})
+
+   
 def addimage(request):
     if request.method == 'POST':
-        add_image = AddForm(request.POST)
+        add_image = AddForm(request.POST, request.FILES)
         if add_image.is_valid():
             add_image.save()
             return HttpResponseRedirect('/imagelist/')
+            #RequestConfig(request, paginate={"per_page": 25}).configure(table)
+            #return render(request, 'imagelist.html', {'table': table})
         else:
             variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','add_image':add_image})
             return render_to_response('addimage.html',variables )

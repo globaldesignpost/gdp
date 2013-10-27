@@ -1,0 +1,40 @@
+{% extends "base_template.html" %}
+{% block title %}GDP{% endblock %}
+
+{% block additional_js %}
+
+<script src="http://getbootstrap.com/assets/js/holder.js"></script>
+{% endblock %}
+{% block content %}
+<div class="row-fluid">
+  <div class="span12">
+    
+   
+      <h3><b>Image List</b><small> Uplaoded images</small></h3>
+<hr>
+
+   
+
+ <div class="row-fluid"></div> 
+<div class="row-fluid">
+ {% load django_tables2 %}
+{% render_table table %}
+</div> 
+
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

@@ -17,6 +17,12 @@
  <div class="row-fluid"></div>     
 <form action="." class="form-horizontal" method="Post">
 {% csrf_token %}
+ {% if add_feed.errors %}
+				    <div class="alert alert-error" >
+				
+				
+				<p style="color:red;">{{add_feed.errors}}</p></div>
+				{% endif %}
 
      <fieldset>
     {% for field in add_feed %}

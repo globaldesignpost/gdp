@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     url(r'^colors/$', 'gdp.views.colors', name='colors'),
     url(r'^addimage/$', 'gdp.views.addimage', name='addimage'),
     url(r'^imagelist/$', 'gdp.views.imagelist', name='addimage'),
-    
+    url(r'^display_feeds/$', 'gdp.views.display_feeds', name='display_feeds'),
     
     # url(r'^Global_Design_Post/', include('Global_Design_Post.foo.urls')),
 

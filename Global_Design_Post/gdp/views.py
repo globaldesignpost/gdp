@@ -12,10 +12,13 @@ from django.contrib.auth.models import User, UserManager
 from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.auth import authenticate,login
 from django.contrib import auth
-from gdp.tables import FeedTable,UploadTable
+from gdp.tables import FeedTable,UploadTable,FeedItemTable
 from django.shortcuts import render
 from django_tables2  import RequestConfig
 def home(request):
+    from PIL import Image
+    im=Image.open('gdp/static/images/5.jpg')
+    print im.size[0]# (width,height) tuple
     form =RegistrationForm()
     variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!'})
     return render_to_response('index.html',variables )
@@ -161,3 +164,45 @@ def addimage(request):
         variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','add_image':add_image})
         return render_to_response('addimage.html',variables )
             
+import datetime
+from gdp.models import FeedItem
+import feedparser
+import re
+
+# RegEx to find invalid characters
+re_pattern = re.compile(u'[^\u0000-\uD7FF\uE000-\uFFFF]', re.UNICODE)
+
+def filter_using_re(unicode_string):
+    return re_pattern.sub(u'\uFFFD', unicode_string)
+
+def display_feeds(request):
+    if request.method == 'POST':
+        pass            
+    else:        
+        feeds = Feed.objects.all()
+        print "feeddddddddddd"
+        for feed in feeds:
+            print "Bye"
+            feed_items = feedparser.parse(feed.URL)
+            print "feedssssss", feed.URL
+            if feed_items['entries'] :
+                print "feed_itemsssssss"
+                
+                for item in feed_items['entries']:   
+                        publishedDate = datetime.datetime.strptime(item['updated'][:25], '%a, %d %b %Y %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S')
+                        #Ensure the same item is not repeated             
+                        try: 
+                            FeedItem.objects.get(url=item['link'],
+                                                       publishedDate__lte=publishedDate)
+                        except FeedItem.DoesNotExist:          
+                            i = FeedItem(title=filter_using_re(item['title']),
+                                         summary=filter_using_re(item['summary']),
+                                         url=filter_using_re(item['link']),
+                                         author=filter_using_re(item['author']),
+                                         publishedDate=publishedDate)                             
+                            i.save()
+                        
+        feed_items = FeedItem.objects.all()        
+        table = FeedItemTable(feed_items)
+        RequestConfig(request, paginate={"per_page": 25}).configure(table)
+        return render(request, 'display_feeds.html', {'table': table})

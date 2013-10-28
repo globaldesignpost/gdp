@@ -5,16 +5,16 @@ from django.contrib.auth.models import User
 
 
 class Feed(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=255)
     Description = models.CharField(max_length=40)
-    URL = models.CharField(max_length=30)
-    type = models.CharField(max_length=30)
+    URL = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
  
  
 class Upload(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=255)
     Description = models.CharField(max_length=40)
-    URL = models.CharField(max_length=30)
+    URL = models.CharField(max_length=255)
     upload = models.FileField(upload_to="gdp/static/images/upload")      
     
 
@@ -345,29 +345,39 @@ class Profile(User):
                     ("On a Cruise","On a Cruise")
 
                    )
-    occupation = models.CharField(verbose_name="Occupation",max_length=30, choices=O_CHOICES,default="I prefer not to say")
-    homeIs = models.CharField(verbose_name="Home is",max_length=30, choices=COUNTRY,default="Afghanistan")
-    myHomeIsSetIn = models.CharField(verbose_name="My home is set in",max_length=30, choices=TYPE_CHOICES,default="Urban")
-    profileAccess = models.CharField(verbose_name="I would like my profile to be",max_length=30, choices=PROFILE_CHOICES,default="Urban")
-    style = models.CharField(verbose_name="Style of your home",max_length=30, choices=DESIGN_STYLE)
-    designStyle = models.CharField(verbose_name="My favourite design style",max_length=30, choices=DESIGN_STYLE)
-    favoriteSpot = models.CharField(verbose_name="Favourite vacation spot",max_length=30, choices=SPOT_CHOICES)
-    environment = models.CharField(verbose_name="Environment I feel most at home",max_length=30, choices=TITLE_CHOICES)
-    favoriteDesigner = models.CharField(verbose_name="Favorite designer",max_length=30, choices=TITLE_CHOICES)
-    colors = models.CharField(verbose_name="Colors i love",max_length=30, choices=TITLE_CHOICES)
-    place = models.CharField(verbose_name="Place on earth i would most like to explore",max_length=30, choices=TITLE_CHOICES)
+    occupation = models.CharField(verbose_name="Occupation",max_length=255, choices=O_CHOICES,default="I prefer not to say")
+    homeIs = models.CharField(verbose_name="Home is",max_length=255, choices=COUNTRY,default="Afghanistan")
+    myHomeIsSetIn = models.CharField(verbose_name="My home is set in",max_length=255, choices=TYPE_CHOICES,default="Urban")
+    profileAccess = models.CharField(verbose_name="I would like my profile to be",max_length=255, choices=PROFILE_CHOICES,default="Urban")
+    style = models.CharField(verbose_name="Style of your home",max_length=255, choices=DESIGN_STYLE)
+    designStyle = models.CharField(verbose_name="My favourite design style",max_length=255, choices=DESIGN_STYLE)
+    favoriteSpot = models.CharField(verbose_name="Favourite vacation spot",max_length=255, choices=SPOT_CHOICES)
+    environment = models.CharField(verbose_name="Environment I feel most at home",max_length=255, choices=TITLE_CHOICES)
+    favoriteDesigner = models.CharField(verbose_name="Favorite designer",max_length=255, choices=TITLE_CHOICES)
+    colors = models.CharField(verbose_name="Colors i love",max_length=255, choices=TITLE_CHOICES)
+    place = models.CharField(verbose_name="Place on earth i would most like to explore",max_length=255, choices=TITLE_CHOICES)
     
     interestingPerson = models.CharField(verbose_name="Most interesting person I have met or would like to meet",max_length=100)
     constantSource = models.CharField(verbose_name = "Most constant source of design inspiration",max_length=100)
     music = models.CharField(verbose_name = "Music that makes me move",max_length=100)
     books = models.CharField(verbose_name = "Books I love",max_length=100)
     childhoodHero = models.CharField(verbose_name = "My Childhood hero",max_length=100)
-    beautifulSeason = models.CharField(verbose_name = "Most beautiful season",max_length=30, choices=TITLE_CHOICES)
-    favoriteTime = models.CharField(verbose_name = "Favorite time of day",max_length=30, choices=TITLE_CHOICES)
-    favoriteEra = models.CharField(verbose_name = "Favorite era",max_length=30 ,choices=TITLE_CHOICES)
+    beautifulSeason = models.CharField(verbose_name = "Most beautiful season",max_length=255, choices=TITLE_CHOICES)
+    favoriteTime = models.CharField(verbose_name = "Favorite time of day",max_length=255, choices=TITLE_CHOICES)
+    favoriteEra = models.CharField(verbose_name = "Favorite era",max_length=255 ,choices=TITLE_CHOICES)
     amBestKnown = models.CharField(verbose_name = "I am best known for",max_length=100)
     likeToBestKnown = models.CharField(verbose_name = "I would like to be best known for",max_length=100)
     believeDesign = models.CharField(verbose_name = "I believe design is",max_length=100)
     alert = models.CharField(verbose_name = "I would love opportunities to give through my passion or talent for design",max_length=100)
     profileImage = models.FileField(verbose_name = "Profile Image",upload_to="gdp/static/images/upload")
     inspriringImage = models.FileField(verbose_name = "Inspiring image",upload_to="gdp/static/images/upload")
+    
+    
+    
+class FeedItem(models.Model):
+    title = models.CharField(max_length=255)
+    summary = models.TextField()
+    url = models.URLField(max_length=255)
+    author = models.CharField(max_length=255)
+    publishedDate = models.DateTimeField()
+    updatedDate = models.DateTimeField(auto_now=True)

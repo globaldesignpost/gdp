@@ -1,0 +1,29 @@
+{% extends "base_template.html" %}
+{% block title %}GDP{% endblock %}
+
+{% block additional_js %}
+
+{% endblock %}
+{% block content %}
+<div class="row-fluid">
+  <div class="span12">   
+	<div class="contentdisplay" style="overflow:scroll;">
+	{% autoescape off %}
+
+	 {% load django_tables2 %}
+	{% render_table table %}
+	{% endautoescape %}
+	</div> 
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

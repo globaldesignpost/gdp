@@ -127,7 +127,7 @@ min-height:200px;
  <input type="text" class="" placeholder="Explore the vault"/><input type="button"  style="margin-bottom:10px;" class="btn btn-default" value="Go"/>
  </div>
  <div style="float:right;">
- <a href="/register" >Register </a> /<a href="/login" >Sign In </a>
+ {% if user.is_authenticated %}({{ user.username }})/<a href="/logout/" >Sign Out </a>{% else %}<a href="/register" >Register </a>/<a href="/login/" >Sign In </a>{%endif%}
  </div>
  </div>
 

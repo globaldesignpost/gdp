@@ -105,6 +105,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'Global_Design_Post.urls'
+
 LOGIN_URL= '/login/'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'Global_Design_Post.wsgi.application'

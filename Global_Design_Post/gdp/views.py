@@ -53,10 +53,10 @@ def registerUser(request):
         form = RegistrationForm()
         variables = RequestContext(request, {'welcomeMsg':'','form':form})
         return render_to_response('registration/registration.html',variables )
-    
-    def logout(request):
-        auth.logout(request)
-        return HttpResponseRedirect("/")
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect("/")
 
 def favorites(request):
     variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!'})
@@ -116,7 +116,7 @@ def authentication(request):
 
         return HttpResponse("Your username and password were incorrect.")
     
-    
+@login_required    
 def feed(request):
     if request.method == 'POST':
         add_feed = FeedForm(request.POST)
@@ -146,7 +146,7 @@ def imagelist(request):
     RequestConfig(request, paginate={"per_page": 25}).configure(table)
     return render(request, 'imagelist.html', {'table': table})
 
-   
+@login_required()  
 def addimage(request):
     if request.method == 'POST':
         add_image = AddForm(request.POST, request.FILES)

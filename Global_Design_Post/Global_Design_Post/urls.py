@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'gdp.views.home', name='home'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$',"gdp.views.logout"),
     url(r'^register/$','gdp.views.registerUser' ),
     url(r'^favorites/$', 'gdp.views.favorites', name='favorites'),
     url(r'^bazaar/$', 'gdp.views.bazaar', name='bazaar'),

@@ -15,12 +15,20 @@ from django.contrib import auth
 from gdp.tables import FeedTable,UploadTable,FeedItemTable
 from django.shortcuts import render
 from django_tables2  import RequestConfig
+import datetime
+from gdp.models import FeedItem,Imagelist
+import feedparser
+import re
+
 def home(request):
-    from PIL import Image
-    im=Image.open('gdp/static/images/5.jpg')
-    print im.size[0]# (width,height) tuple
-    form =RegistrationForm()
-    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!'})
+    #from django.core.mail import send_mail
+    #send_mail('Subject here', 'Here is the message.', 'from@example.com',['tomjoy002@gmail.com'], fail_silently=False)
+    #from PIL import Image
+    #im=Image.open('gdp/static/images/5.jpg')
+    #print im.size[0]# (width,height) tuple
+    #Imagelistval = Imagelist.objects.all().order_by('-id')[:100] 
+    #variables = RequestContext(request, {'Imagelist':Imagelistval})
+    variables = RequestContext(request, {'':''})
     return render_to_response('index.html',variables )
 
 
@@ -35,9 +43,11 @@ def registerUser(request):
             dictParamList = {}
             dictParamList['email'] = form.cleaned_data['emailAddress'].strip()
             dictParamList['userName'] = form.cleaned_data['userName'].strip()
-            dictParamList['password'] = form.cleaned_data['password'].strip()
-            
-            return HttpResponse('success')
+            dictParamList['password'] = form.cleaned_data['choosePassword'].strip()
+            user = User.objects.create_user(dictParamList['userName'], dictParamList['email'], dictParamList['password'])
+            user.is_staff = True
+            user.save()
+            return HttpResponseRedirect('/login/')
             #objUserManagementDA = usermanagementDA()
             #objUserManagementDA.createuser(dictParamList)
             #return HttpResponse('success')
@@ -164,10 +174,6 @@ def addimage(request):
         variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','add_image':add_image})
         return render_to_response('addimage.html',variables )
             
-import datetime
-from gdp.models import FeedItem
-import feedparser
-import re
 
 # RegEx to find invalid characters
 re_pattern = re.compile(u'[^\u0000-\uD7FF\uE000-\uFFFF]', re.UNICODE)
@@ -206,3 +212,27 @@ def display_feeds(request):
         table = FeedItemTable(feed_items)
         RequestConfig(request, paginate={"per_page": 25}).configure(table)
         return render(request, 'display_feeds.html', {'table': table})
+    
+    
+    
+def filterImagesByUrl(request):
+    from BeautifulSoup import BeautifulSoup
+    import urllib, cStringIO
+    from PIL import Image
+    feed_items = FeedItem.objects.all() 
+    for row in feed_items:
+        
+        soup = BeautifulSoup(row.summary)
+        tags=soup.findAll('img')
+        s= list(set(tag['src'] for tag in tags))
+        for src in s:
+            fileval = cStringIO.StringIO(urllib.urlopen(src).read())
+            im=Image.open(fileval)
+            height, width = im.size
+            i = Imagelist(title='',
+                         src=src,
+                         height=str(height),
+                         width=str(width))
+            i.save()
+            
+    return HttpResponse('success')

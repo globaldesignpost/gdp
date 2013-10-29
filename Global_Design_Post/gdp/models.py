@@ -381,3 +381,12 @@ class FeedItem(models.Model):
     author = models.CharField(max_length=255)
     publishedDate = models.DateTimeField()
     updatedDate = models.DateTimeField(auto_now=True)
+    
+    
+class Imagelist(models.Model):
+    title = models.CharField(max_length=255)
+    src = models.URLField(max_length=255)
+    height = models.CharField(max_length=255)
+    width = models.CharField(max_length=255)
+    updatedDate = models.DateTimeField(auto_now=True)
+    

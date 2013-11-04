@@ -38,4 +38,4 @@ urlpatterns = patterns('',
      
      
 )
-include('password_reset.urls')
+#include('password_reset.urls')

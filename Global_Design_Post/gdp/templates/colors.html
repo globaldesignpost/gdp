@@ -54,38 +54,22 @@ height:335px;
     
     
  <div class="BOXMAIN">
+ {% for row in colors_list1 %}
 
      <div class="BOXMAIN1">
 
-     <div class="IMGBORDER"><img height="256" width="292" alt="1BOX" src="/static/images/1BOX.jpg"></div>
+     <div class="IMGBORDER"><img src="{{row.img}}" style="width:348px;height:256px;" alt="1BOX" /></div>
 
      
 
 
      </div>
-
-
-      <div class="BOXMAIN1">
-
-     <div class="IMGBORDER"> <img height="256" width="292" alt="2BOX" src="/static/images/2BOX.jpg"></div>
-
+{%endfor%}
      
-
-
-     </div>
-
-
-
-      <div class="BOXMAIN1">
-
-     <div class="IMGBORDER"><img height="256" width="292" alt="BOX3" src="/static/images/BOX3.jpg"></div>
-
-     
-
-
-     </div>
-     <input type="button" class="btn btn-danger" value="Submit Your Own"/> <a href="#">create archieve</a>
-
+     <div class="row-fluid">
+     <div class="span12">
+     <input type="button" class="btn btn-danger" value="SUBMIT YOUR OWN COLOR PALETTE"/> <a href="#">create archieve</a>
+</div> </div> 
 
     </div>   
     <hr>
@@ -96,14 +80,14 @@ height:335px;
       <div class="MIDDLELEFT615" style="margin-top:0px;">
 
       <div class="EDITORS">
-
+ {% for row in colors_list2 %}
       <div class="EDITORSboxcolor">
 
-      <div class="EDITORSleftcolor">asdbdskjn</div>
+      <div class="EDITORSleftcolor"><img src="{{row.img}}" style="width:100px;height:100px;" alt="1BOX" /></div>
 
       <div class="EDITORSrightcolor">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+       <div class="fontboldsmall">{{row.title}}</div>
+       <p>Description </p>
        <p> <a href="#">Link</a></p>
 
 
@@ -113,62 +97,10 @@ height:335px;
 
 
        </div>
+{%endfor%}
 
 
-
-       <div class="EDITORSboxcolor">
-
-      <div class="EDITORSleftcolor">asdbdskjn</div>
-
-      <div class="EDITORSrightcolor">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-       <div class="EDITORSboxcolor">
-
-      <div class="EDITORSleftcolor">asdbdskjn</div>
-
-      <div class="EDITORSrightcolor">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-       <div class="EDITORSboxcolor">
-
-      <div class="EDITORSleftcolor">asdbdskjn</div>
-
-      <div class="EDITORSrightcolor">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
+     
 
 
 

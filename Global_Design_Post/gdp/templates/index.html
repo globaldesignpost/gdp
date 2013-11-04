@@ -97,37 +97,19 @@
 
 
     <DIV class="BOXMAIN">
+     {% for row in colors_list1 %}
 
      <DIV class="BOXMAIN1">
 
-     <DIV class="IMGBORDER"><img src="/static/images/1BOX.jpg" width="348" height="256" alt="1BOX" /></DIV>
+     <DIV class="IMGBORDER"><img src ="{{row.img}}" style="height:194px;width:452px"></DIV>
 
-     <DIV class="BOXCLICKTEXT"> LOOKING FOR SOMETHING</DIV>
-
-
-     </DIV>
-
-
-      <DIV class="BOXMAIN1">
-
-     <DIV class="IMGBORDER"> <img src="/static/images/2BOX.jpg" width="348" height="256" alt="2BOX" /></DIV>
-
-     <DIV class="BOXCLICKTEXT"> LOOKING FOR SOMETHING</DIV>
+     <DIV class="BOXCLICKTEXT"> {{row.img}}</DIV>
 
 
      </DIV>
 
 
-
-      <DIV class="BOXMAIN1">
-
-     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
-
-     <DIV class="BOXCLICKTEXT"> LOOKING FOR SOMETHING</DIV>
-
-
-     </DIV>
-
+      {% endfor %}
 
     </DIV>
 
@@ -165,15 +147,14 @@ EDITORS CHOICE</DIV>
 
       <DIV  class="EDITORS">
 
+      {% for row in outposts_list %}
       <div class="EDITORSboxmain">
 
-      <div class="EDITORSleftin">asdbdskjn</div>
+      <div class="EDITORSleftin"><img src ="{{row.img}}" style="height:194px;width:452px"></div>
 
       <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
+       <div class="fontboldsmall">{{row.title}}</div>
+       <p> Description
 
 
       </div>
@@ -182,81 +163,8 @@ EDITORS CHOICE</DIV>
 
        </div>
 
-
-
-       <div class="EDITORSboxmain">
-
-      <div class="EDITORSleftin">asdbdskjn</div>
-
-      <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-       <div class="EDITORSboxmain">
-
-      <div class="EDITORSleftin">asdbdskjn</div>
-
-      <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-       <div class="EDITORSboxmain">
-
-      <div class="EDITORSleftin">asdbdskjn</div>
-
-      <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-       <div class="EDITORSboxmain">
-
- <div class="EDITORSleftin">asdbdskjn</div>
-
-      <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-
+{% endfor%}
+      
 
 
 

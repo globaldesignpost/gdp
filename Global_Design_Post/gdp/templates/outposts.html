@@ -177,15 +177,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div>
       <div class="MIDDLELEFT615">
 
-      <div class="BOXCLICKTEXT">
-EDITORS CHOICE</div>
+      <div class="BOXCLICKTEXT">Outposts</div>
 
 
       <div class="EDITORS">
-{% for row in Outposts %}
+{% for row in outposts_list %}
       <div class="EDITORSboxmain">
 
-      <div class="EDITORSleftin"><img src ="{{row.img}}" style="height:194;width:452"></div>
+      <div class="EDITORSleftin"><img src ="{{row.img}}" style="height:194px;width:452px"></div>
 
       <div class="EDITORSrightin">
        <div class="fontboldsmall">{{row.title}}</div>
@@ -223,78 +222,15 @@ EDITORS CHOICE</div>
       </div>
       <div>
 
-        <div class="WELOVE">  LINKS WE LOVE </div>
-        <div>
-        <br>
-
-         <div class="nbs-flexisel-container"><div class="nbs-flexisel-inner"><ul id="flexiselDemo1" class="nbs-flexisel-ul" style="left: -155px;">
-
-    <li class="nbs-flexisel-item" style="width: 155px;"><img src="/static/images/logo-youtube.png"></li><li class="nbs-flexisel-item" style="width: 155px;"><img src="/static/images/logo-ebay.png"></li>
-
-    <li class="nbs-flexisel-item" style="width: 155px;"><img src="/static/images/logo-youtube.png"></li>
-
-<li class="nbs-flexisel-item" style="width: 155px;"><img src="/static/images/logo-ebay.png"></li></ul><div class="nbs-flexisel-nav-left" style="top: 17px;"></div><div class="nbs-flexisel-nav-right" style="top: 17px;"></div></div></div>
-
-<div class="clearout"></div>
 
 
 
 
 
-<script type="text/javascript">
-
-$(window).load(function() {
-    $("#flexiselDemo1").flexisel();
-    $("#flexiselDemo2").flexisel({
-        enableResponsiveBreakpoints: true,
-        responsiveBreakpoints: {
-            portrait: {
-                changePoint:480,
-                visibleItems: 1
-            },
-            landscape: {
-                changePoint:640,
-                visibleItems: 2
-            },
-            tablet: {
-                changePoint:768,
-                visibleItems: 3
-            }
-        }
-    });
-
-    $("#flexiselDemo3").flexisel({
-        visibleItems: 5,
-        animationSpeed: 1000,
-        autoPlay: true,
-        autoPlaySpeed: 3000,
-        pauseOnHover: true,
-        enableResponsiveBreakpoints: true,
-        responsiveBreakpoints: {
-            portrait: {
-                changePoint:480,
-                visibleItems: 1
-            },
-            landscape: {
-                changePoint:640,
-                visibleItems: 2
-            },
-            tablet: {
-                changePoint:768,
-                visibleItems: 3
-            }
-        }
-    });
-
-    $("#flexiselDemo4").flexisel({
-        clone:false
-    });
-
-});
-</script>
 
 
-        </div>
+
+       
 
 
 

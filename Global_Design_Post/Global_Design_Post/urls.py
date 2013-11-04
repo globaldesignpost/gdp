@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     #url(r'^resetPassword/(.*)/','gdp.views.resetPassword'),
     url(r'^filterImagesByUrl/$', 'gdp.views.filterImagesByUrl', name='filterImagesByUrl'),
     url(r'^vault/$', 'gdp.views.vault', name='vault'),
+    url(r'^fetch_feeds/$', 'gdp.views.fetch_feeds', name='fetch_feeds'),
+    
     # url(r'^Global_Design_Post/', include('Global_Design_Post.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

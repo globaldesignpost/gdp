@@ -345,26 +345,99 @@ class Profile(User):
                     ("On a Cruise","On a Cruise")
 
                    )
+    
+    ENVIRON_CHOICES =(
+    ("Bustling City","Bustling City"),
+    ("Coffee Shop","Coffee Shop"),
+    ("Quiet Home","Quiet Home")
+    )
+    COLOR_CHOICES =(
+    ("Almond","Almond"),
+    ("Antique Brass","Antique Brass"),
+    ("Apricot","Apricot"),
+    ("Aquamarine","Aquamarine"),
+    ("Asparagus","Asparagus"),
+    ("Atomic Tangerine","Atomic Tangerine"),
+    ("Banana Mania","Banana Mania"),
+    ("Beaver","Beaver"),
+    ("Bittersweet","Bittersweet"),
+    ("Black","Black"),
+    ("Blizzard Blue","Blizzard Blue"),
+    ("Blue","Blue"),
+    ("Blue Bell","Blue Bell"),
+    ("Blue Gray","Blue Gray"),
+    ("Blue Gree","Blue Gree"),
+    ("Blue Violet","Blue Violet"),
+    ("Blush","Blush"),
+    ("Brick Red","Brick Red"),
+    ("Brown","Brown"),
+    ("Burnt Orange","Burnt Orange"))
+    PLACE_CHOICES = (
+
+    ("Afghanistan","Afghanistan"),
+    ("Aland Islands","Aland Islands"),
+    ("Albania","Albania"),
+    ("Algeria","Algeria"),
+    ("American Samoa","American Samoa"),
+    ("Andorra","Andorra"),
+    ("Angola","Angola"),
+    ("Anguilla","Anguilla"),
+    ("Antarctica","Antarctica"),
+    ("Antigua and Barbuda","Antigua and Barbuda"),
+    ("Argentina","Argentina"),
+    ("Armenia","Armenia"),
+    ("Aruba","Aruba"),
+    ("Australia","Australia"),
+    ("Austria","Austria"),
+    ("Azerbaijan","Azerbaijan"),
+    ("Other","Other"))
+    SOURCE_CHOICES =(
+    ("Museums","Museums"),
+    ("Magazines","Magazines"),
+    ("Internet","Internet"),
+    ("Galleries","Galleries"),
+    ("Nature","Nature"),
+    ("Other","Other"))
+    SEASON_CHOICES = (
+    ("Winter","Winter"),
+    ("Spring","Spring"),
+    ("Summer","Summer"),
+    ("Autumn","Autumn"))
+    TIME_CHOICES =(
+     ("Morning","Morning"),
+     ("Afternoon","Afternoon"),
+     ("Evening","Evening"),
+     ("Late Night","Late Night")              
+     )
+    R_CHOICES= (
+                
+    ("Renaissance","Renaissance"),
+    ("Neoclassicism","Neoclassicism"),
+    ("Romanticism","Romanticism"),
+    ("Modern","Modern"),
+    ("Contemporary ","Contemporary ")
+    
+    )
     occupation = models.CharField(verbose_name="Occupation",max_length=255, choices=O_CHOICES,default="I prefer not to say")
     homeIs = models.CharField(verbose_name="Home is",max_length=255, choices=COUNTRY,default="Afghanistan")
     myHomeIsSetIn = models.CharField(verbose_name="My home is set in",max_length=255, choices=TYPE_CHOICES,default="Urban")
     profileAccess = models.CharField(verbose_name="I would like my profile to be",max_length=255, choices=PROFILE_CHOICES,default="Urban")
-    style = models.CharField(verbose_name="Style of your home",max_length=255, choices=DESIGN_STYLE)
-    designStyle = models.CharField(verbose_name="My favourite design style",max_length=255, choices=DESIGN_STYLE)
-    favoriteSpot = models.CharField(verbose_name="Favourite vacation spot",max_length=255, choices=SPOT_CHOICES)
-    environment = models.CharField(verbose_name="Environment I feel most at home",max_length=255, choices=TITLE_CHOICES)
+    style = models.CharField(verbose_name="Style of your home",max_length=255, choices=DESIGN_STYLE,default = "Bustling City")
+    designStyle = models.CharField(verbose_name="My favourite design style",max_length=255, choices=DESIGN_STYLE,default = "Art Deco")
+    favoriteSpot = models.CharField(verbose_name="Favourite vacation spot",max_length=255, choices=SPOT_CHOICES,default = "On the beach")
+    environment = models.CharField(verbose_name="Environment I feel most at home",max_length=255, choices=ENVIRON_CHOICES,default = "Bustling City" )
     favoriteDesigner = models.CharField(verbose_name="Favorite designer",max_length=255, choices=TITLE_CHOICES)
-    colors = models.CharField(verbose_name="Colors i love",max_length=255, choices=TITLE_CHOICES)
-    place = models.CharField(verbose_name="Place on earth i would most like to explore",max_length=255, choices=TITLE_CHOICES)
+    colors = models.CharField(verbose_name="Colors i love",max_length=255, choices=COLOR_CHOICES,default = "Almond")
+    place = models.CharField(verbose_name="Place on earth i would most like to explore",max_length=255, choices=PLACE_CHOICES,default = "Afghanistan")
     
     interestingPerson = models.CharField(verbose_name="Most interesting person I have met or would like to meet",max_length=100)
-    constantSource = models.CharField(verbose_name = "Most constant source of design inspiration",max_length=100)
+    constantSource = models.CharField(verbose_name = "Most constant source of design inspiration",max_length=100,choices=SOURCE_CHOICES,default = "Museums")
     music = models.CharField(verbose_name = "Music that makes me move",max_length=100)
     books = models.CharField(verbose_name = "Books I love",max_length=100)
     childhoodHero = models.CharField(verbose_name = "My Childhood hero",max_length=100)
-    beautifulSeason = models.CharField(verbose_name = "Most beautiful season",max_length=255, choices=TITLE_CHOICES)
-    favoriteTime = models.CharField(verbose_name = "Favorite time of day",max_length=255, choices=TITLE_CHOICES)
-    favoriteEra = models.CharField(verbose_name = "Favorite era",max_length=255 ,choices=TITLE_CHOICES)
+    beautifulSeason = models.CharField(verbose_name = "Most beautiful season",max_length=255, choices=SEASON_CHOICES,default = "Winter")
+    favoriteTime = models.CharField(verbose_name = "Favorite time of day",max_length=255, choices=TIME_CHOICES,default = "Morning")
+    favoriteEra = models.CharField(verbose_name = "Favorite era",max_length=255 ,choices=R_CHOICES,default = "Renaissance")
     amBestKnown = models.CharField(verbose_name = "I am best known for",max_length=100)
     likeToBestKnown = models.CharField(verbose_name = "I would like to be best known for",max_length=100)
     believeDesign = models.CharField(verbose_name = "I believe design is",max_length=100)

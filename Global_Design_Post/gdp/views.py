@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, RequestContext
 from django.shortcuts import redirect
 from gdp.forms import RegistrationForm, FeedForm ,MyProfileForm,AddForm,VaultForm
-from gdp.models import Feed,Upload,Outposts
+from gdp.models import Feed,Upload,Outposts,Profile,FeedItem,Imagelist,Inspiration,Colors,Designs,Bazaar
 from gdp.forms import RegistrationForm,PasswordReCaptchaForm
 from django.contrib.auth.models import User, UserManager
 from django.contrib.auth.decorators import login_required,permission_required
@@ -16,7 +16,6 @@ from gdp.tables import FeedTable,UploadTable,FeedItemTable
 from django.shortcuts import render
 from django_tables2  import RequestConfig
 import datetime
-from gdp.models import FeedItem,Imagelist,Inspiration,Colors,Designs,Bazaar
 import feedparser
 import re
 
@@ -28,7 +27,9 @@ def home(request):
     #print im.size[0]# (width,height) tuple
     #Imagelistval = Imagelist.objects.all().order_by('-id')[:100] 
     #variables = RequestContext(request, {'Imagelist':Imagelistval})
-    variables = RequestContext(request, {'':''})
+    outposts_list=Outposts.objects.all().order_by('-id')[:5]
+    colors_list1=Colors.objects.all().order_by('-id')[:3]
+    variables = RequestContext(request, {'colors_list1':colors_list1 ,'outposts_list':outposts_list})
     return render_to_response('index.html',variables )
 
 
@@ -77,9 +78,14 @@ def inspiration(request):
     return render_to_response('inspiration.html',variables )
 
 def colors(request):
-    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!'})
+    colors_list1=Colors.objects.all().order_by('-id')[:3]
+    colors_list2=Colors.objects.all().order_by('-id')[:4]
+    
+    
+    variables = RequestContext(request, {'colors_list1':colors_list1,'colors_list2':colors_list2})
     return render_to_response('colors.html',variables )
 
+@login_required 
 def myProfile(request):
     if request.method == 'POST':
         print request.POST
@@ -90,10 +96,16 @@ def myProfile(request):
             form.save()
             return HttpResponseRedirect('/')
         else:
+            
+            
             variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
             return render_to_response('myProfile.html',variables )
             
     else:
+        print request.user.username
+        #userobj = Profile.objects.get(id = request.user.id)
+        from django.forms.models import model_to_dict 
+        #userobjDict = model_to_dict(userobj)
         form =MyProfileForm()
         variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
         return render_to_response('myProfile.html',variables )
@@ -111,11 +123,11 @@ def outposts(request):
     form =MyProfileForm()
     print "1111111111111111111111111111111111111"
     try:
-        t=Outposts.objects.all().order_by('-id')[:5]
+        outposts_list=Outposts.objects.all().order_by('-id')[:5]
     except Exception,e:
         print e
     print "111111111111111222222222221111111111111111111111"
-    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form,'Outposts':t})
+    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form,'outposts_list':outposts_list})
     return render_to_response('outposts.html',variables )
 
 
@@ -220,7 +232,7 @@ def display_feeds(request):
                 im=Image.open(fileval)
                 height, width = im.size
                 if width>200:
-                    
+                    print "innnnnnnnnnnnnnnnnnnnnnnnnnn"
                     image = src
                     if request.POST.get('postType','') == "Outposts":
                         i = Outposts(title=row.title,
@@ -281,28 +293,7 @@ def display_feeds(request):
                         
                   
     else:        
-        feeds = Feed.objects.all()
-        print "feeddddddddddd"
-        for feed in feeds:
-            print "Bye"
-            feed_items = feedparser.parse(feed.URL)
-            print "feedssssss", feed.URL
-            if feed_items['entries'] :
-                print "feed_itemsssssss"
-                
-                for item in feed_items['entries']:   
-                        publishedDate = datetime.datetime.strptime(item['updated'][:25], '%a, %d %b %Y %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S')
-                        #Ensure the same item is not repeated             
-                        try: 
-                            FeedItem.objects.get(url=item['link'],
-                                                       publishedDate__lte=publishedDate)
-                        except FeedItem.DoesNotExist:          
-                            i = FeedItem(title=filter_using_re(item['title']),
-                                         summary=filter_using_re(item['summary']),
-                                         url=filter_using_re(item['link']),
-                                         author=filter_using_re(item['author']),
-                                         publishedDate=publishedDate)                             
-                            i.save()
+        pass
                         
     feed_items = FeedItem.objects.all()        
     table = FeedItemTable(feed_items)
@@ -310,6 +301,37 @@ def display_feeds(request):
     RequestConfig(request, paginate={"per_page": 25}).configure(table)
     return render(request, 'display_feeds.html', {'table': table,'form':form})
     
+def fetch_feeds(request):
+    feeds = Feed.objects.all()
+    print "feeddddddddddd"
+    for feed in feeds:
+        print "Bye"
+        feed_items = feedparser.parse(feed.URL)
+        print "feedssssss", feed.URL
+        if feed_items['entries'] :
+            print "feed_itemsssssss"
+            
+            for item in feed_items['entries']:   
+                    publishedDate = datetime.datetime.strptime(item['updated'][:25], '%a, %d %b %Y %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S')
+                    #Ensure the same item is not repeated             
+                    try: 
+                        FeedItem.objects.get(url=item['link'],
+                                                   publishedDate__lte=publishedDate)
+                    except FeedItem.DoesNotExist:          
+                        i = FeedItem(title=filter_using_re(item['title']),
+                                     summary=filter_using_re(item['summary']),
+                                     url=filter_using_re(item['link']),
+                                     author=filter_using_re(item['author']),
+                                     publishedDate=publishedDate)                             
+                        i.save()
+                        
+    feed_items = FeedItem.objects.all()        
+    table = FeedItemTable(feed_items)
+    form =VaultForm()
+    RequestConfig(request, paginate={"per_page": 25}).configure(table)
+    return render(request, 'display_feeds.html', {'table': table,'form':form})
+                            
+                        
     
     
 def filterImagesByUrl(request):

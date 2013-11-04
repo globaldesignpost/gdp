@@ -50,63 +50,19 @@ width:150px;
 				    </form>
 				    
 				        <DIV class="BOXMAIN">
+				        {% for row in result_list %}
 
      <DIV class="BOXMAIN1">
 
-     <DIV class="IMGBORDER"><img src="/static/images/1BOX.jpg" width="348" height="256" alt="1BOX" /></DIV>
+     <DIV class="IMGBORDER"><img src="{{row.img}}" style="width:348px;height:256px;" alt="1BOX" /></DIV>
 
-     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
-
-
-     </DIV>
-
-
-      <DIV class="BOXMAIN1">
-
-     <DIV class="IMGBORDER"> <img src="/static/images/2BOX.jpg" width="348" height="256" alt="2BOX" /></DIV>
-
-     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
+     <DIV class="BOXCLICKTEXTvault">{{ row.title}}</DIV>
 
 
      </DIV>
+{% endfor %}
 
-
-
-      <DIV class="BOXMAIN1">
-
-     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
-
-     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
-
-
-     </DIV>
-
-
-   <DIV class="BOXMAIN1">
-
-     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
-
-     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
-
-
-     </DIV>
-        <DIV class="BOXMAIN1">
-
-     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
-
-     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
-
-
-     </DIV>
-        <DIV class="BOXMAIN1">
-
-     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
-
-     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING<p>tommmmmmmmmmmmmmmmm</p></DIV>
-
-
-     </DIV>
-
+    
 
     </DIV>
     

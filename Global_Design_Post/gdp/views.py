@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, RequestContext
 from django.shortcuts import redirect
 from gdp.forms import RegistrationForm, FeedForm ,MyProfileForm,AddForm,VaultForm
-from gdp.models import Feed,Upload
+from gdp.models import Feed,Upload,Outposts
 from gdp.forms import RegistrationForm,PasswordReCaptchaForm
 from django.contrib.auth.models import User, UserManager
 from django.contrib.auth.decorators import login_required,permission_required
@@ -16,7 +16,7 @@ from gdp.tables import FeedTable,UploadTable,FeedItemTable
 from django.shortcuts import render
 from django_tables2  import RequestConfig
 import datetime
-from gdp.models import FeedItem,Imagelist
+from gdp.models import FeedItem,Imagelist,Inspiration,Colors,Designs,Bazaar
 import feedparser
 import re
 
@@ -109,14 +109,29 @@ def mygdp(request):
 
 def outposts(request):
     form =MyProfileForm()
-    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
+    print "1111111111111111111111111111111111111"
+    try:
+        t=Outposts.objects.all().order_by('-id')[:5]
+    except Exception,e:
+        print e
+    print "111111111111111222222222221111111111111111111111"
+    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form,'Outposts':t})
     return render_to_response('outposts.html',variables )
 
 
 
 def vault(request):
     form =VaultForm()
-    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
+    from itertools import chain
+    Outposts_list = Outposts.objects.all().order_by('-id')[:10]
+    Colors_list = Colors.objects.all().order_by('-id')[:10]
+    Designs_list = Designs.objects.all().order_by('-id')[:10]
+    Inspiration_list = Inspiration.objects.all().order_by('-id')[:10]
+    Bazaar_list = Bazaar.objects.all().order_by('-id')[:10]
+    
+    #result_list = sorted(chain(Outposts_list,Colors_list, Designs_list, Inspiration_list,Bazaar_list),key=lambda instance: instance.date_created)
+    result_list = list(chain(Outposts_list,Colors_list, Designs_list, Inspiration_list,Bazaar_list))
+    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form,'result_list':result_list})
     return render_to_response('vault.html',variables )
 
 def authentication(request):
@@ -190,7 +205,81 @@ def filter_using_re(unicode_string):
 
 def display_feeds(request):
     if request.method == 'POST':
-        pass            
+        feedlist = request.POST.get('hdnCheck','0').split(',') 
+        feedObjList = FeedItem.objects.filter(pk__in=feedlist) 
+        for row in  feedObjList:
+            from BeautifulSoup import BeautifulSoup
+            import urllib, cStringIO
+            from PIL import Image
+            soup = BeautifulSoup(row.summary)
+            tags=soup.findAll('img')
+            s= list(set(tag['src'] for tag in tags))
+            for src in s:
+                
+                fileval = cStringIO.StringIO(urllib.urlopen(src).read())
+                im=Image.open(fileval)
+                height, width = im.size
+                if width>200:
+                    
+                    image = src
+                    if request.POST.get('postType','') == "Outposts":
+                        i = Outposts(title=row.title,
+                                     img=image,
+                                     url=row.url,
+                                     author=row.author,
+                                     color = request.POST.get('color',''),
+                                     region = request.POST.get('region',''),
+                                     room =request.POST.get('room',''),
+                                     style = request.POST.get('style',''),
+                                     updatedDate = row.updatedDate)                             
+                        i.save()
+                    elif request.POST.get('postType','') == "Inspiration":
+                        
+                        i = Inspiration(title=row.title,
+                                     img=image,
+                                     url=row.url,
+                                     author=row.author,
+                                     color = request.POST.get('color',''),
+                                     region = request.POST.get('region',''),
+                                     room =request.POST.get('room',''),
+                                     style = request.POST.get('style',''),
+                                     updatedDate = row.updatedDate)                             
+                        i.save()
+                    elif request.POST.get('postType','') == "Color":
+                        i = Colors(title=row.title,
+                                     img=image,
+                                     url=row.url,
+                                     author=row.author,
+                                     color = request.POST.get('color',''),
+                                     region = request.POST.get('region',''),
+                                     room =request.POST.get('room',''),
+                                     style = request.POST.get('style',''),
+                                     updatedDate = row.updatedDate)                             
+                        i.save()
+                    elif request.POST.get('postType','') == "Bazaar":
+                        i = Bazaar(title=row.title,
+                                     img=image,
+                                     url=row.url,
+                                     author=row.author,
+                                     color = request.POST.get('color',''),
+                                     region = request.POST.get('region',''),
+                                     room =request.POST.get('room',''),
+                                     style = request.POST.get('style',''),
+                                     updatedDate = row.updatedDate)                             
+                        i.save()
+                    elif request.POST.get('postType','') == "Design Matters":
+                        i = Designs(title=row.title,
+                                     img=image,
+                                     url=row.url,
+                                     author=row.author,
+                                     color = request.POST.get('color',''),
+                                     region = request.POST.get('region',''),
+                                     room =request.POST.get('room',''),
+                                     style = request.POST.get('style',''),
+                                     updatedDate = row.updatedDate)                             
+                        i.save()
+                        
+                  
     else:        
         feeds = Feed.objects.all()
         print "feeddddddddddd"
@@ -215,11 +304,11 @@ def display_feeds(request):
                                          publishedDate=publishedDate)                             
                             i.save()
                         
-        feed_items = FeedItem.objects.all()        
-        table = FeedItemTable(feed_items)
-        form =VaultForm()
-        RequestConfig(request, paginate={"per_page": 25}).configure(table)
-        return render(request, 'display_feeds.html', {'table': table,'form':form})
+    feed_items = FeedItem.objects.all()        
+    table = FeedItemTable(feed_items)
+    form =VaultForm()
+    RequestConfig(request, paginate={"per_page": 25}).configure(table)
+    return render(request, 'display_feeds.html', {'table': table,'form':form})
     
     
     

@@ -182,16 +182,14 @@ EDITORS CHOICE</div>
 
 
       <div class="EDITORS">
-
+{% for row in Outposts %}
       <div class="EDITORSboxmain">
 
-      <div class="EDITORSleftin">asdbdskjn</div>
+      <div class="EDITORSleftin"><img src ="{{row.img}}" style="height:194;width:452"></div>
 
       <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
+       <div class="fontboldsmall">{{row.title}}</div>
+       <p> Description
 
 
       </div>
@@ -200,78 +198,7 @@ EDITORS CHOICE</div>
 
        </div>
 
-
-
-       <div class="EDITORSboxmain">
-
-      <div class="EDITORSleftin">asdbdskjn</div>
-
-      <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-       <div class="EDITORSboxmain">
-
-      <div class="EDITORSleftin">asdbdskjn</div>
-
-      <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-       <div class="EDITORSboxmain">
-
-      <div class="EDITORSleftin">asdbdskjn</div>
-
-      <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
-
-
-       <div class="EDITORSboxmain">
-
- <div class="EDITORSleftin">asdbdskjn</div>
-
-      <div class="EDITORSrightin">
-       <div class="fontboldsmall">TITLE</div>
-       <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
-       <p> <a href="#">Link</a></p>
-
-
-
-      </div>
-
-
-
-       </div>
+{% endfor%}
 
 
 

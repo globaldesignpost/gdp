@@ -14,19 +14,29 @@ $(document).ready(
 
             $(this).css({'height': theHeight / 2 + 'px', 'width': theWidth / 2 + 'px'});
         });
+        
+        $('.subBtn').click(function(){
+   
+   updateTextArea();
+    $( ".vaultform" ).submit();
+   });
+        
     });
     
     function updateTextArea() {         
-     var allVals = [];
-     $('#c_b :checked').each(function() {
-       allVals.push($(this).val());
+     var allVals = "";
+     $('.chk_feed input:checked').each(function() {
+      if (allVals == ""){
+      allVals = $(this).val();
+      }
+      else{
+      allVals = allVals+","+$(this).val();
+      }
+       
      });
-     $('#t').val(allVals)
+     alert(allVals);
+     $('#hdnChk').val(allVals);
   }
- $(function() {
-   $('#c_b input').click(updateTextArea);
-   updateTextArea();
- });
 </script>
 <style>
 .vaultform input,select{
@@ -47,7 +57,7 @@ width:150px;
 	 {% load django_tables2 %}
 	{% render_table table %}
 	<form class="form-horizontal vaultform" action="." method ="post" enctype="multipart/form-data">
-	
+	{% csrf_token %}
 				     <fieldset>
 				     <table><tr>
 				     <td width="100"><b>Sumbit to:</b>
@@ -59,7 +69,8 @@ width:150px;
 				    {% endfor %}
 				    
 			<td>
-    <a  class="btn btn-default" href="#" >Submit</a>
+			<input type="hidden" id="hdnChk" name="hdnCheck" value=""/>
+    <a  class="btn btn-default subBtn" href="#" >Submit</a>
     </td>
 				</tr> </table>
 				     </fieldset>

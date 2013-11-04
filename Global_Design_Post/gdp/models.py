@@ -393,3 +393,69 @@ class Imagelist(models.Model):
     width = models.CharField(max_length=255)
     updatedDate = models.DateTimeField(auto_now=True)
     
+    
+    
+    
+    
+    
+    
+    
+class Outposts(models.Model):
+    print "tommmmmmmmmmmmmmmmmmmm"
+    title = models.CharField(max_length=255)
+    img = models.TextField()
+    url = models.URLField(max_length=255)
+    author = models.CharField(max_length=255)
+    color = models.CharField(max_length=255)
+    region = models.CharField(max_length=255)
+    room = models.CharField(max_length=255)
+    style = models.CharField(max_length=255)
+    updatedDate = models.DateTimeField(auto_now=True)
+    
+    
+class Inspiration(models.Model):
+    title = models.CharField(max_length=255)
+    img = models.TextField()
+    url = models.URLField(max_length=255)
+    author = models.CharField(max_length=255)
+    color = models.CharField(max_length=255)
+    region = models.CharField(max_length=255)
+    room = models.CharField(max_length=255)
+    style = models.CharField(max_length=255)
+    updatedDate = models.DateTimeField(auto_now=True)
+    
+    
+class Bazaar(models.Model):
+    title = models.CharField(max_length=255)
+    img = models.TextField()
+    url = models.URLField(max_length=255)
+    author = models.CharField(max_length=255)
+    color = models.CharField(max_length=255)
+    region = models.CharField(max_length=255)
+    room = models.CharField(max_length=255)
+    style = models.CharField(max_length=255)
+    updatedDate = models.DateTimeField(auto_now=True)
+    
+class Designs(models.Model):
+    title = models.CharField(max_length=255)
+    img = models.TextField()
+    url = models.URLField(max_length=255)
+    author = models.CharField(max_length=255)
+    color = models.CharField(max_length=255)
+    region = models.CharField(max_length=255)
+    room = models.CharField(max_length=255)
+    style = models.CharField(max_length=255)
+    updatedDate = models.DateTimeField(auto_now=True)
+    
+    
+class Colors(models.Model):
+    title = models.CharField(max_length=255)
+    img = models.TextField()
+    url = models.URLField(max_length=255)
+    author = models.CharField(max_length=255)
+    color = models.CharField(max_length=255)
+    region = models.CharField(max_length=255)
+    room = models.CharField(max_length=255)
+    style = models.CharField(max_length=255)
+    updatedDate = models.DateTimeField(auto_now=True)
+    

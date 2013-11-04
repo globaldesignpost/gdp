@@ -127,5 +127,65 @@ class FeedForm(ModelForm):
 
 class AddForm(ModelForm):
     class Meta:
-        model = Upload        
+        model = Upload   
+        
+        
+class VaultForm(forms.Form):
+    POST_TYPE =(
+                      ("POST TYPE","POST TYPE"),
+                      ("Outposts","Outposts"),
+                      ("Inspiration","Inspiration"),
+                       ("Color","Color"),
+                       ("Design Matters","Design Matters"),
+                       ("Bazaar","Bazaar")
+
+                   )
+    COLOR_TYPE =(
+                   ("COLOR","COLOR"),
+                    ("red","red"),
+                    ("orange","orange"),
+                    ("yellow","yellow"),
+                    ("green","green"),
+                    ("blue","blue"),
+                    ("indigo","indigo"),
+                    ("violet","violet")
+
+                   )
+    REGION_TYPE =(
+                  ("REGION","REGION"),
+                    ("Europe","Europe"),
+                    ("North America","North America"),
+                    ("Asia","Asia"),
+                    ("South America","South America"),
+
+                   )
+    ROOM_TYPE =(
+                   ("ROOM" ,"ROOM"),
+                    ("Living Room","Living Room"),
+                    ("Kitchen","Kitchen"),
+                    ("Master Bedroom","Master Bedroom"),
+                    ("Bathroom","Bathroom"),
+                    ("Dining Room","Dining Room"),
+                    ("Outdoor","Outdoor"),
+                    ("Guest Room","Guest Room"),
+                    ("Children's Room","Children's Room"),
+                    ("Study","Study"),
+                   )
+    STYLE_TYPE =(
+                   ("STYLE","STYLE"),
+                    ("Traditional","Traditional"),
+                    ("Asian","Asian"),
+                    ("California Chic","California Chic"),
+                    ("Modern","Modern"),
+                    ("Classical","Classical"),
+
+                   )
+ 
+    
+    postType = forms.ChoiceField(choices=POST_TYPE,widget = forms.Select(attrs={'class':"btn btn-default"}))
+    color = forms.ChoiceField(choices=COLOR_TYPE,widget = forms.Select(attrs={'class':"btn btn-default"}))
+    region = forms.ChoiceField(choices=REGION_TYPE,widget = forms.Select(attrs={'class':"btn btn-default"}))
+    room = forms.ChoiceField(choices=ROOM_TYPE,widget = forms.Select(attrs={'class':"btn btn-default"}))
+    style = forms.ChoiceField(choices=STYLE_TYPE,widget = forms.Select(attrs={'class':"btn btn-default"}))
+    keywords = forms.CharField(widget = forms.TextInput(attrs={'placeholder': 'Keywords'}))
         

@@ -22,7 +22,10 @@ urlpatterns = patterns('',
     url(r'^addimage/$', 'gdp.views.addimage', name='addimage'),
     url(r'^imagelist/$', 'gdp.views.imagelist', name='addimage'),
     url(r'^display_feeds/$', 'gdp.views.display_feeds', name='display_feeds'),
-    
+    #url(r'^requestPassword/$','gdp.views.requestPassword'),
+    #url(r'^resetPassword/(.*)/','gdp.views.resetPassword'),
+    url(r'^filterImagesByUrl/$', 'gdp.views.filterImagesByUrl', name='filterImagesByUrl'),
+    url(r'^vault/$', 'gdp.views.vault', name='vault'),
     # url(r'^Global_Design_Post/', include('Global_Design_Post.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
@@ -33,3 +36,4 @@ urlpatterns = patterns('',
      
      
 )
+include('password_reset.urls')

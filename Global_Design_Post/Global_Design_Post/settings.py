@@ -147,6 +147,7 @@ INSTALLED_APPS = (
     'gdp',
     'django_tables2',
     'captcha',
+    #'password_reset',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, RequestContext
 from django.shortcuts import redirect
-from gdp.forms import RegistrationForm, FeedForm ,MyProfileForm,AddForm
+from gdp.forms import RegistrationForm, FeedForm ,MyProfileForm,AddForm,VaultForm
 from gdp.models import Feed,Upload
 from gdp.forms import RegistrationForm,PasswordReCaptchaForm
 from django.contrib.auth.models import User, UserManager
@@ -112,6 +112,13 @@ def outposts(request):
     variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
     return render_to_response('outposts.html',variables )
 
+
+
+def vault(request):
+    form =VaultForm()
+    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form})
+    return render_to_response('vault.html',variables )
+
 def authentication(request):
     from django.contrib.auth import authenticate
     username=request.GET.get('username','')
@@ -210,8 +217,9 @@ def display_feeds(request):
                         
         feed_items = FeedItem.objects.all()        
         table = FeedItemTable(feed_items)
+        form =VaultForm()
         RequestConfig(request, paginate={"per_page": 25}).configure(table)
-        return render(request, 'display_feeds.html', {'table': table})
+        return render(request, 'display_feeds.html', {'table': table,'form':form})
     
     
     

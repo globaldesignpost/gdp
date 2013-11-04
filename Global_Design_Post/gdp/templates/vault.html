@@ -1,0 +1,121 @@
+{% extends "base_template.html" %}
+{% block title %}Vault{% endblock %}
+
+{% block additional_js %}
+
+<script src="http://getbootstrap.com/assets/js/holder.js"></script>
+<style>
+.vaultform input,select{
+width:150px;
+
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="row-fluid">
+  <div class="span12">
+    
+
+
+				      <h3><b>Vault</b></h3>
+						<hr>
+				
+				 <div class="row"></div>     
+				
+				    <form class="form-horizontal vaultform" action="." method ="post" enctype="multipart/form-data">
+				    
+				    {% csrf_token %}
+				 {% if form.errors %}
+				    <div class="alert alert-error" >
+				
+				
+				<p style="color:red;">{{form.errors}}</p></div>
+				{% endif %}
+				     <fieldset>
+				     <table><tr>
+				     <td width="100"><b>View By:</b>
+				     </td>
+				    {% for field in form %}
+				    <td>
+				     {{ field }}
+				    </td>
+				    {% endfor %}
+				    
+			<td>
+    
+     <input type="submit" class="btn btn-default" style="width:100px;" value="Search">
+    </td>
+				</tr> </table>
+				     </fieldset>
+				    </form>
+				    
+				        <DIV class="BOXMAIN">
+
+     <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"><img src="/static/images/1BOX.jpg" width="348" height="256" alt="1BOX" /></DIV>
+
+     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
+
+
+     </DIV>
+
+
+      <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"> <img src="/static/images/2BOX.jpg" width="348" height="256" alt="2BOX" /></DIV>
+
+     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
+
+
+     </DIV>
+
+
+
+      <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
+
+     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
+
+
+     </DIV>
+
+
+   <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
+
+     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
+
+
+     </DIV>
+        <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
+
+     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING</DIV>
+
+
+     </DIV>
+        <DIV class="BOXMAIN1">
+
+     <DIV class="IMGBORDER"><img src="/static/images/BOX3.jpg" width="348" height="256" alt="BOX3" /></DIV>
+
+     <DIV class="BOXCLICKTEXTvault"> LOOKING FOR SOMETHING<p>tommmmmmmmmmmmmmmmm</p></DIV>
+
+
+     </DIV>
+
+
+    </DIV>
+    
+      
+    </div>
+      </div>
+  
+
+
+
+
+{% endblock %}

@@ -111,7 +111,12 @@ def myProfile(request):
         return render_to_response('myProfile.html',variables )
 
 def bazaar(request):
-    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!'})
+    bazaar_list=Bazaar.objects.all().order_by('-id')[:12]
+    imagelist=[]
+    for row in bazaar_list:
+        image = {'img':row.img,'title':row.title,'url':row.url}
+        imagelist.append(image)
+    variables = RequestContext(request, {'imagelist':imagelist})
     return render_to_response('bazaar.html',variables )
 
 @login_required

@@ -27,6 +27,8 @@ urlpatterns = patterns('',
     url(r'^filterImagesByUrl/$', 'gdp.views.filterImagesByUrl', name='filterImagesByUrl'),
     url(r'^vault/$', 'gdp.views.vault', name='vault'),
     url(r'^fetch_feeds/$', 'gdp.views.fetch_feeds', name='fetch_feeds'),
+    url(r'^feed_delete/$', 'gdp.views.feed_delete', name='feed_delete'),
+    
     
     # url(r'^Global_Design_Post/', include('Global_Design_Post.foo.urls')),
 

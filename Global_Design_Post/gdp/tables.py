@@ -3,6 +3,10 @@ from gdp.models import Feed,Upload,FeedItem
 from django.utils.safestring import mark_safe
 from django.utils.html import escape
 class FeedTable(tables.Table):
+    chk_feed=tables.CheckBoxColumn(accessor="pk", orderable=False)
+    def render_chk_feed(self,value):
+        html=mark_safe('<input type="checkbox" name="col" value="%s"/>'%escape(value))
+        return html
     class Meta:
         model = Feed
         attrs = {"class": "table table-hover table-bordered table-stripped"}

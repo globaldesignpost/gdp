@@ -3,7 +3,35 @@
 
 {% block additional_js %}
 
-<script src="http://getbootstrap.com/assets/js/holder.js"></script>
+<script>
+$(document).ready(
+    function(){
+
+    
+        
+  $('.chk_feed input').click(function(){
+   if ($(this).is(':checked')) {
+   updateTextArea();
+    }
+   });
+        
+    });
+    
+    function updateTextArea() {         
+     var allVals = "";
+     $('.chk_feed input:checked').each(function() {
+      if (allVals == ""){
+      allVals = $(this).val();
+      }
+      else{
+      allVals = allVals+","+$(this).val();
+      }
+       
+     });
+     alert(allVals);
+     $('#deleteFeed').attr('href','/feed_delete?id='+allVals);
+  }
+</script>
 {% endblock %}
 {% block content %}
 <div class="row-fluid">
@@ -48,7 +76,9 @@
 <div class="row-fluid">
  {% load django_tables2 %}
 {% render_table table %}
+<a href="#" class="btn btn-danger" id="deleteFeed" style="float:right;margin-bottom:20px;">Delete feeds</a>
 <a href="/fetch_feeds/" class="btn btn-danger" style="float:right;margin-bottom:20px;">Fetch all contents</a>
+<input type="hidden" id="hdnChk" name="hdnCheck" value=""/>
 </div> 
 
   </div>

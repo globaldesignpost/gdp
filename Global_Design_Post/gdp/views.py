@@ -305,6 +305,12 @@ def display_feeds(request):
     form =VaultForm()
     RequestConfig(request, paginate={"per_page": 25}).configure(table)
     return render(request, 'display_feeds.html', {'table': table,'form':form})
+
+def feed_delete(request):
+    feedlist = request.GET.get('id','0').split(',')
+    print feedlist
+    Feed.objects.filter(pk__in=feedlist).delete()
+    return HttpResponseRedirect('/feed/')
     
 def fetch_feeds(request):
     feeds = Feed.objects.all()

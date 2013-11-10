@@ -153,6 +153,18 @@ google.maps.event.addDomListener(window, 'load', initialize);
 	height:168px;
 
 }
+.EDITORSleftin {
+
+    width: 180px;
+}
+.EDITORSrightin1 {
+
+    width: 130px;
+}
+.EDITORSrightin {
+
+    width: 180px;
+}
 </style>
 {% endblock %}
 {% block content %}
@@ -184,7 +196,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="EDITORSboxmain">
 
       <div class="EDITORSleftin"><img src ="{{row.img}}" style="height:194px;width:452px"></div>
-
+<div class="EDITORSrightin EDITORSrightin1" style="float:left;"><img src ="{{row.img}}" class="EDITORSrightin1"> </div>
       <div class="EDITORSrightin">
        <div class="fontboldsmall">{{row.title}}</div>
        <p> Description
@@ -256,9 +268,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="MIDDLERIGHTBOX MIDDLERIGHTBOX2">
       <span style="text-align:center"><h5>View Posts By</h5></span>
       <hr>
-      <div style="text-align:center"><a href="#">REGION</a></div>
-      <div style="text-align:center"><a href="#">ROOM</a></div>
-      <div style="text-align:center"><a href="#">STYLE</a></div>
+      <div style="text-align:center"><a href="/vault/">REGION</a></div>
+      <div style="text-align:center"><a href="/vault/">ROOM</a></div>
+      <div style="text-align:center"><a href="/vault/">STYLE</a></div>
      
       
       

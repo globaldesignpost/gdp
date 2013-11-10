@@ -144,23 +144,52 @@ def outposts(request):
         outposts_list=Outposts.objects.all().order_by('-id')[:10]
     except Exception,e:
         print e
+        
+    userList={}
+    try:
+        from django.forms.models import model_to_dict
+        dataList=Profile.objects.get(username=request.user.username)
+        dataList=model_to_dict(dataList)
+        try:
+            url =  str(dataList['profileImage']).split('gdp')[1]
+            userList['url']=url
+            userList['username']=dataList['username']
+        except:
+            userList={}
+    except:
+        pass
     print "111111111111111222222222221111111111111111111111"
-    variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form,'outposts_list':outposts_list})
+    variables = RequestContext(request, {'userList':userList,'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form,'outposts_list':outposts_list})
     return render_to_response('outposts.html',variables )
 
 
 
 def vault(request):
     form =VaultForm()
-    from itertools import chain
-    Outposts_list = Outposts.objects.all().order_by('-id')[:10]
-    Colors_list = Colors.objects.all().order_by('-id')[:10]
-    Designs_list = Designs.objects.all().order_by('-id')[:10]
-    Inspiration_list = Inspiration.objects.all().order_by('-id')[:10]
-    Bazaar_list = Bazaar.objects.all().order_by('-id')[:10]
+    if request.method == 'POST':
+        if request.POST.get('postType','') == "Outposts":
+            result_list = Outposts.objects.all().order_by('-id')[:10]
+        elif request.POST.get('postType','') == "Inspiration":
+            result_list = Inspiration.objects.all().order_by('-id')[:10]
+        elif request.POST.get('postType','') == "Color":
+            result_list = Colors.objects.all().order_by('-id')[:10]
+        elif request.POST.get('postType','') == "Bazaar":
+            result_list = Bazaar.objects.all().order_by('-id')[:10]
+        elif request.POST.get('postType','') == "Design Matters":
+            result_list = Designs.objects.all().order_by('-id')[:10]
+    else:
+        
     
-    #result_list = sorted(chain(Outposts_list,Colors_list, Designs_list, Inspiration_list,Bazaar_list),key=lambda instance: instance.date_created)
-    result_list = list(chain(Outposts_list,Colors_list, Designs_list, Inspiration_list,Bazaar_list))
+        form =VaultForm()
+        from itertools import chain
+        Outposts_list = Outposts.objects.all().order_by('-id')[:10]
+        Colors_list = Colors.objects.all().order_by('-id')[:10]
+        Designs_list = Designs.objects.all().order_by('-id')[:10]
+        Inspiration_list = Inspiration.objects.all().order_by('-id')[:10]
+        Bazaar_list = Bazaar.objects.all().order_by('-id')[:10]
+        
+        #result_list = sorted(chain(Outposts_list,Colors_list, Designs_list, Inspiration_list,Bazaar_list),key=lambda instance: instance.date_created)
+        result_list = list(chain(Outposts_list,Colors_list, Designs_list, Inspiration_list,Bazaar_list))
     variables = RequestContext(request, {'page_message':'The request was unable to send due to some technical issues.','error_header':'Error!','form':form,'result_list':result_list})
     return render_to_response('vault.html',variables )
 

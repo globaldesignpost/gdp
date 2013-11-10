@@ -3,7 +3,19 @@
 
 {% block additional_js %}
 
-<script src="http://getbootstrap.com/assets/js/holder.js"></script>
+<script>
+
+$(document).ready(function(){
+
+    $('.controls a').each(function(){
+    $(this).attr('href',$(this).attr('href').split('gdp')[1])
+    $(this).html('<img src="'+$(this).attr('href')+'" style="height:100px;width:100px;"/>')
+    
+    });
+});
+
+
+</script>
 {% endblock %}
 {% block content %}
 <div class="row-fluid">
@@ -53,10 +65,10 @@
 <h3>My Account</h3>
 <div class="EDITORSboxcolor" style="width:300px;">
 
-      <div class="EDITORSleftprofile thumbnail">asdbdskjn</div>
+      <div class="EDITORSleftprofile thumbnail"><img src="{{userList.url}}" /></div>
 
       <div class="EDITORSrightprofile">
-       <div class="fontboldsmall">TITLE</div>
+       <div class="fontboldsmall">{{userList.username}}</div>
        <p> Lorem ipsum dolor sit amet, .</p>
        <p> <a href="#">Link</a></p>
 

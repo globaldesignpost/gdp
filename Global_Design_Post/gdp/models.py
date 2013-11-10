@@ -24,7 +24,7 @@ TITLE_CHOICES = (
     ('MS', 'Ms.'),
 )
 
-class Profile(User):
+class Profile(models.Model):
     
     O_CHOICES = (
     ("I prefer not to say","I prefer not to say"),
@@ -418,6 +418,8 @@ class Profile(User):
     ("Contemporary ","Contemporary ")
     
     )
+    username = models.CharField(verbose_name="Username",max_length=255)
+    email = models.CharField(verbose_name="Email",max_length=255)
     occupation = models.CharField(verbose_name="Occupation",max_length=255, choices=O_CHOICES,default="I prefer not to say")
     homeIs = models.CharField(verbose_name="Home is",max_length=255, choices=COUNTRY,default="Afghanistan")
     myHomeIsSetIn = models.CharField(verbose_name="My home is set in",max_length=255, choices=TYPE_CHOICES,default="Urban")
@@ -531,4 +533,13 @@ class Colors(models.Model):
     room = models.CharField(max_length=255)
     style = models.CharField(max_length=255)
     updatedDate = models.DateTimeField(auto_now=True)
+    
+class resetpasswordrequest(models.Model):
+    ResetPasswordID = models.AutoField(primary_key=True)
+    ResetPasswordCode = models.CharField(max_length=255)
+    UserID = models.IntegerField()
+    Email = models.CharField(max_length=150)
+    Deleted = models.BooleanField(default=False)
+    class Meta:
+        db_table = u'resetpasswordrequest'
     

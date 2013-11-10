@@ -84,7 +84,7 @@ setMarkers(map, beaches);
  * other.
  */
 var beaches = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
+  ['India', 20.593684, 78.96288, 4],
   ['Coogee Beach', -33.923036, 151.259052, 5],
   ['Cronulla Beach', -34.028249, 151.157507, 3],
   ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
@@ -148,6 +148,12 @@ function setMarkers(map, locations) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+<style>
+.MIDDLERIGHTBOX2{
+	height:168px;
+
+}
+</style>
 {% endblock %}
 {% block content %}
 
@@ -163,14 +169,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
       <div class="MIDDLELEFT">
 
-      <div>
-
-      <div class="MIDDLELEFT450">DSASDAS</div>
-
-      <div class="MIDDLELEFT200">QWQW	QW</div>
-
-
-      </div>
+      
 
 
 
@@ -254,7 +253,16 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="MIDDLERIGHT">
 
 
-      <div class="MIDDLERIGHTBOX">Register Now CTA</div>
+      <div class="MIDDLERIGHTBOX MIDDLERIGHTBOX2">
+      <span style="text-align:center"><h5>View Posts By</h5></span>
+      <hr>
+      <div style="text-align:center"><a href="#">REGION</a></div>
+      <div style="text-align:center"><a href="#">ROOM</a></div>
+      <div style="text-align:center"><a href="#">STYLE</a></div>
+     
+      
+      
+      </div>
 
       <div class="MIDDLERIGHTBOX">Social Icons</div>
 

@@ -3,13 +3,29 @@ from django import forms
 from django.contrib.auth import authenticate,login
 from django.forms import ModelForm
 from models import Feed,Profile,Upload
-
+from django.contrib.auth.models import User
 class MyProfileForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(MyProfileForm, self).__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs['readonly'] = True
+        self.fields['username'].widget.attrs['readonly'] = True
     class Meta:
         model = Profile
         fields = ['username','email','occupation','homeIs','myHomeIsSetIn','profileAccess','style','designStyle','favoriteSpot','environment','favoriteDesigner','colors','place','interestingPerson','constantSource','music','books','childhoodHero','beautifulSeason','favoriteTime','favoriteEra','amBestKnown','likeToBestKnown','believeDesign','alert','profileImage','inspriringImage']
   
-
+def checkExistingEmail(email,userID=0):
+    errorMessage = 'No Error'
+    try:
+        objEmailExists = User.objects.filter(email=email).exclude(id=userID)
+        if len(objEmailExists)>=1:
+            errorMessage = 'Email id already exists'
+    except:
+        """utObject = Utility()
+        objExceptionHandler=ExceptionHandler()
+        e=objExceptionHandler.getException()
+        utObject.WriteLog('Error in the method checkExistingEmail of the class UserManagementHelperDA  %s' % str(e))
+        del utObject,objExceptionHandler"""
+    return errorMessage
 
 class RegistrationForm(forms.Form):
     userName = forms.CharField(label=u'Name:', max_length=30, widget = forms.TextInput(attrs={'class': 'span5',}))
@@ -88,7 +104,7 @@ class RequestPasswordForm(forms.Form):
 
             try:
 
-                objEmailExists =''#
+                objEmailExists = checkExistingEmail(email,0)
                 if objEmailExists == "Email id already exists":
                     return email
                 elif objEmailExists == "No Error":
@@ -100,14 +116,14 @@ class RequestPasswordForm(forms.Form):
 
 
 class ResetPasswordForm(forms.Form):
-    userName = forms.CharField(label=u'Username:', max_length=30,widget = forms.TextInput(attrs={'class': 'span8',}))
+    userName = forms.CharField(label=u'Username:', max_length=30,widget = forms.TextInput(attrs={'class': 'input-block-level',}))
     choosePassword = forms.CharField(
         label=u'Choose Password:',
-        widget=forms.PasswordInput(attrs={'class': 'span8',})
+        widget=forms.PasswordInput(attrs={'class': 'input-block-level',})
     )
     repeatPassword = forms.CharField(
         label=u'Repeat Password:',
-        widget=forms.PasswordInput(attrs={'class': 'span8',})
+        widget=forms.PasswordInput(attrs={'class': 'input-block-level',})
     )
 
     def clean_repeatPassword(self):

@@ -325,29 +325,58 @@ def feed_delete(request):
     Feed.objects.filter(pk__in=feedlist).delete()
     return HttpResponseRedirect('/feed/')
     
+# def fetch_feeds(request):
+#     feeds = Feed.objects.all()
+#     print "feeddddddddddd"
+#     for feed in feeds:
+#         print "Bye"
+#         feed_items = feedparser.parse(feed.URL)
+#         print "feedssssss", feed.URL
+#         if feed_items['entries'] :
+#             print "feed_itemsssssss"
+#             
+#             for item in feed_items['entries']:   
+#                     publishedDate = datetime.datetime.strptime(item['updated'][:25], '%a, %d %b %Y %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S')
+#                     #Ensure the same item is not repeated             
+#                     try: 
+#                         FeedItem.objects.get(url=item['link'],
+#                                                    publishedDate__lte=publishedDate)
+#                     except FeedItem.DoesNotExist:          
+#                         i = FeedItem(title=filter_using_re(item['title']),
+#                                      summary=filter_using_re(item['summary']),
+#                                      url=filter_using_re(item['link']),
+#                                      author=filter_using_re(item['author']),
+#                                      publishedDate=publishedDate)                             
+#                         i.save()
+#                         
+#     feed_items = FeedItem.objects.all()        
+#     table = FeedItemTable(feed_items)
+#     form =VaultForm()
+#     RequestConfig(request, paginate={"per_page": 25}).configure(table)
+#     return render(request, 'display_feeds.html', {'table': table,'form':form})
+
+from dateutil import parser
 def fetch_feeds(request):
     feeds = Feed.objects.all()
-    print "feeddddddddddd"
     for feed in feeds:
-        print "Bye"
         feed_items = feedparser.parse(feed.URL)
-        print "feedssssss", feed.URL
-        if feed_items['entries'] :
-            print "feed_itemsssssss"
-            
+        if feed_items.get('entries') :
             for item in feed_items['entries']:   
-                    publishedDate = datetime.datetime.strptime(item['updated'][:25], '%a, %d %b %Y %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S')
-                    #Ensure the same item is not repeated             
-                    try: 
-                        FeedItem.objects.get(url=item['link'],
-                                                   publishedDate__lte=publishedDate)
-                    except FeedItem.DoesNotExist:          
-                        i = FeedItem(title=filter_using_re(item['title']),
-                                     summary=filter_using_re(item['summary']),
-                                     url=filter_using_re(item['link']),
-                                     author=filter_using_re(item['author']),
-                                     publishedDate=publishedDate)                             
-                        i.save()
+                if item.get('updated'):
+                    parser.parse(item['updated'], fuzzy=True)
+                    publishedDate = parser.parse(item['updated'], fuzzy=True).strftime('%Y-%m-%d %H:%M:%S')
+                    #Ensure the same item is not repeated        
+                    if item.get('link'):     
+                        try: 
+                            FeedItem.objects.get(url=item['link'],
+                                                       publishedDate__lte=publishedDate)
+                        except FeedItem.DoesNotExist:
+                            i = FeedItem(title=filter_using_re(item.get('title','')),
+                                         summary=filter_using_re(item.get('summary','')),
+                                         url=filter_using_re(item.get('link','')),
+                                         author=filter_using_re(item.get('author','')),
+                                         publishedDate=publishedDate)                             
+                            i.save()
                         
     feed_items = FeedItem.objects.all()        
     table = FeedItemTable(feed_items)
